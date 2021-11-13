@@ -14,7 +14,7 @@ Pour les distances il nous faut utiliser  les coordonnées des péages Lambert93
 Pour ce projet, il y a 3 objectifs majeurs. Ces 3 objectifs sont les suivants : 
 
 - Nous allons créer une carte intéractive du réseau autoroutier d'une partie de l'occitanie. Sur cette carte nous pourrons cliquer sur des portions de route (entre deux péages) afin d'avoir les informations suivantes : prix, km, prix/km. Nous utiliserons les packages ```folium``` et ```osmnx``` qui font appel aux données de OpenStreetMap. Nous utiliserons également ```plotly``` pour afficher la carte. 
-- Il nous faudra également afficher une distribution des prix. La distribution étant libre nous avons choisi de .... à remplir.
+- Il nous faudra également afficher une distribution des prix. JE SAIS PAS QUOI FAIRE
 - Enfin nous allons créer un algorithme permettant de déterminer le trajet pour un coùt minimal avec une contrainte k du nombre de sorties. C'est-à-dire que l'on donnera en entrée un point A d'entrée, un point B de sortie et k sorties possible durant le trajet. L'algorithme ressortira les noms des k sorties permettant de payer le moins cher possible sur cette portion de A à B. Nous utiliserons ```networkx```. Pour cela nous nous appuierons sur des algorithmes existants notamment l'algorithme de Kruskal et celui de Ford-Fulkerson.
 
 Suite à ces 3 axes majeurs nous créerons des fonctions test avec ```pytest``` afin de vérifier la cohérence de notre programme. Nous utiliserons également ```time``` nous permettant de mesurer et d'afficher le temps d'exécution. 
