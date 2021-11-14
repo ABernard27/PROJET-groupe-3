@@ -9,11 +9,11 @@ Ce projet est dirigé par Chery Fanny, Côme Olivier et Bernard Anne.
 
 ## Programme détaillé
 Nous allons tout d'abord créer les tableaux de données contenant les prix des péages et les distances séparant ces péages. Les données des prix sont fournis sur le pdf suivant : https://public-content.vinci-autoroutes.com/PDF/Tarifs-peage-asf-vf/ASF-C1-TARIFS-WEB-2021-maille-vf.pdf 
-Pour les distances il nous faut utiliser  les coordonnées des péages Lambert93, les transformer en WGS84 puis déterminer les distances à l'aide du package ```osmnx``` et ```pyroutelib3```. 
+Pour les distances il nous faut utiliser  les coordonnées des péages Lambert93, les transformer en WGS84 puis déterminer les distances à l'aide du package ```osmnx```. 
 
 Pour ce projet, il y a 3 objectifs majeurs. Ces 3 objectifs sont les suivants : 
 
-- Nous allons créer une carte intéractive du réseau autoroutier d'une partie de l'occitanie. Sur cette carte nous pourrons cliquer sur des portions de route (entre deux péages) afin d'avoir les informations suivantes : prix, km, prix/km. Nous utiliserons les packages ```folium``` et ```osmnx``` qui font appel aux données de OpenStreetMap. Nous utiliserons également ```plotly``` pour afficher la carte. 
+- Nous allons créer une carte intéractive du réseau autoroutier d'une partie de l'occitanie. Sur cette carte nous pourrons cliquer sur des portions de route (entre deux péages) afin d'avoir les informations suivantes : prix, km, prix/km. Nous utiliserons les packages ```folium``` et ```osmnx``` qui font appel aux données de OpenStreetMap ainsi que ```pyroutelib3```. Nous utiliserons également ```plotly``` pour afficher la carte. 
 - Il nous faudra également afficher une distribution des prix. JE SAIS PAS QUOI FAIRE
 - Enfin nous allons créer un algorithme permettant de déterminer le trajet pour un coùt minimal avec une contrainte k du nombre de sorties. C'est-à-dire que l'on donnera en entrée un point A d'entrée, un point B de sortie et k sorties possible durant le trajet. L'algorithme ressortira les noms des k sorties permettant de payer le moins cher possible sur cette portion de A à B. Nous utiliserons ```networkx```. Pour cela nous nous appuierons sur des algorithmes existants notamment l'algorithme de Kruskal et celui de Ford-Fulkerson.
 
