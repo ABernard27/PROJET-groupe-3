@@ -11,7 +11,6 @@ pd.options.display.max_rows = 50
 url= 'https://static.data.gouv.fr/resources/gares-de-peage-du-reseau-routier-national-concede/20210224-175626/gares-peage-2019.csv'
 path_target = './gares-peage-2019.csv'
 download(url, path_target, replace=False)
-
 #%%
 
 data = pd.read_csv("gares-peage-2019.csv",sep=';',usecols=["route","x","y"," Nom gare "])
@@ -57,28 +56,38 @@ data = data.set_index(np.arange(len(data)))
 data.to_csv('data.csv')
 
 #%%
-# calcul des distances
+# creation dataframe des distances
 import requests
 import json
-DIST = []
+DIST = np.zeros((len(data),len(data)))
 
 for i in range(len(data)):
-    if i-1 < 0:
-        x,y = (data['x'][i],data['y'][i])
-    else:
-
-        x,y=(data['x'][i-1],data['y'][i-1])
-
-    x1,y1=(data['x'][i],data['y'][i])
-
-    r = requests.get(f"http://router.project-osrm.org/route/v1/car/{x},{y};{x1},{y1}?overview=false""")
-    routes = json.loads(r.content)
-    route = routes.get("routes")[0]
-    DIST.append(round(route['distance']/1000))
+    for j in range(i,len(data)):
+        x1,y1=(data['x'][j],data['y'][j])
+        x,y=(data['x'][i],data['y'][i])
+        r = requests.get(f"http://router.project-osrm.org/route/v1/car/{x},{y};{x1},{y1}?overview=false""")
+        r2 = requests.get(f"http://router.project-osrm.org/route/v1/car/{x1},{y1};{x},{y}?overview=false""")
+        routes = json.loads(r.content)
+        routes2 = json.loads(r2.content)
+        route = routes.get("routes")[0]
+        route2 = routes2.get("routes")[0]
+        DIST[i,j]=min(round(route['distance']/1000),round(route2['distance']/1000))
 print(DIST)
-    
+
 # source : https://ichi.pro/fr/distance-parcourue-entre-deux-ou-plusieurs-endroits-en-python-151146835025391
 
+#%%
+DIST2 = DIST + DIST.T
+
+DISTANCE = pd.DataFrame(DIST2,columns=['St-Jean-de-Vedas','Sete','Agde Pezenas','Peage de Beziers-Cabrials','Beziers ouest','Narbonne est ',
+'Narbonne sud','Sigean ','Leucate','Perpignan nord','Perpignan sud','Le Boulou  (peage sys ferme)','Peage du Perthus','Lezignan',
+'Carcassonne est','Carcassonne ouest','Bram','Castelnaudary','Villefranche-de-Lauragais','Nailloux','Mazeres-Saverdun','Peage de pamiers','Montgiscard','Peage de Toulouse sud/ouest','Peage de Toulouse sud/est'])
+
+DISTANCE.index=['St-Jean-de-Vedas','Sete','Agde Pezenas','Peage de Beziers-Cabrials','Beziers ouest','Narbonne est ',
+'Narbonne sud','Sigean ','Leucate','Perpignan nord','Perpignan sud','Le Boulou  (peage sys ferme)','Peage du Perthus','Lezignan',
+'Carcassonne est','Carcassonne ouest','Bram','Castelnaudary','Villefranche-de-Lauragais','Nailloux','Mazeres-Saverdun','Peage de pamiers','Montgiscard','Peage de Toulouse sud/ouest','Peage de Toulouse sud/est']
+DISTANCE.to_csv('Distance.csv')
+    
 # %%
 url = 'https://raw.githubusercontent.com/ABernard27/PROJET-groupe-3/Developpement/Doc/prix.csv'
 path_target = "./prix.csv"
@@ -92,3 +101,5 @@ prix = prix.drop(prix.index[[0,1,2,3,5,18,29,30,33,34,35,36,37,38,39,40,41,42]])
 prix.index=['St-Jean-de-Vedas','Sete','Agde Pezenas','Peage de Beziers-Cabrials','Beziers ouest','Narbonne est ',
 'Narbonne sud','Sigean ','Leucate','Perpignan nord','Perpignan sud','Le Boulou  (peage sys ferme)','Peage du Perthus','Lezignan',
 'Carcassonne est','Carcassonne ouest','Bram','Castelnaudary','Villefranche-de-Lauragais','Nailloux','Mazeres-Saverdun','Peage de pamiers','Montgiscard','Peage de Toulouse sud/ouest','Peage de Toulouse sud/est']
+
+prix.to_csv('Prix.csv')
