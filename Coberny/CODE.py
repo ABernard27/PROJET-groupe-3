@@ -5,29 +5,34 @@ import matplotlib.pyplot as plt
 import numpy as np
 from download import download
 from pyproj import Proj, transform
+
+pd.options.display.max_rows = 50
+
 #%%
 url= 'https://static.data.gouv.fr/resources/gares-de-peage-du-reseau-routier-national-concede/20210224-175626/gares-peage-2019.csv'
 path_target = './gares-peage-2019.csv'
 download(url, path_target, replace=False)
 
+#%%
 
 data = pd.read_csv("gares-peage-2019.csv",sep=';',usecols=["route","x","y"," Nom gare "])
 data=data.loc[(data['route'] == 'A0009') | (data['route']=='A0061') | (data['route']=='A0062')| (data['route']=='A0066')| (data['route']=='A0075')| (data['route']=='A0709')]
 
-
 data = data.loc[(data['x']=='767254,1') | (data[" Nom gare "]=='SETE                                    ') | (data[" Nom gare "]=='AGDE') | (data[" Nom gare "]=='BEZIERS CABRIALS (ENTReE)') | 
 (data[" Nom gare "]=='BEZIERS OUEST') | (data[" Nom gare "]=='NARBONNE EST') | (data[" Nom gare "]=='NARBONNE SUD') | (data[" Nom gare "]=='SIGEAN')
-| (data[" Nom gare "]=='LEUCATE') | (data[" Nom gare "]=='PERPIGNAN NORD') | (data[" Nom gare "]=='PERPIGNAN SUD') | 
+| (data[" Nom gare "]=='LEUCATE') | (data[" Nom gare "]=='PERPIGNAN SUD') | 
 (data[" Nom gare "]=='BOULOU (FERMe)') | (data[" Nom gare "]=='LE PERTHUS-LE BOULOU') | (data[" Nom gare "]=='LEZIGNAN') | 
 (data[" Nom gare "]=='CARCASSONNE EST') | (data[" Nom gare "]=='CARCASSONNE OUEST') | (data[" Nom gare "]=='BRAM') | (data[" Nom gare "]=='CASTELNAUDARY') | (data[" Nom gare "]=='VILLEFRANCHE DE LAURAGAIS') | 
-(data[" Nom gare "]=='NAILLOUX') | (data[" Nom gare "]=='MAZERES') | (data[" Nom gare "]=='PAMIER') | (data[" Nom gare "]=='TOULOUSE SUD-OUEST (ENTREE)')]
+(data[" Nom gare "]=='NAILLOUX') | (data[" Nom gare "]=='MAZERES') | (data[" Nom gare "]=='PAMIER') | (data[" Nom gare "]=='TOULOUSE SUD-OUEST (ENTREE)') | (data[" Nom gare "]=='TOULOUSE SUD-EST (SORTIE )')
+| (data[" Nom gare "]=='PERPIGNAN NORD                          ')]
 
+#%%
 data.info(verbose=True)
 data.select_dtypes(include=['float64'])
 data = data.stack().str.replace(',','.').unstack()
 data = data.set_index(np.arange(len(data)))
 
-# transformation des coordonnées lambert93 en coordonnées WGS84
+# transformation coordonnées lambert93 en coordonnées WGS84
 inProj = Proj(init='epsg:2154')
 outProj = Proj(init='epsg:4326')
 L93 = np.array([data['x'],data['y']]).T
@@ -47,13 +52,13 @@ data['y']=data['y'].replace(np.asarray(data['y']).reshape(-1,1),B2)
 
 # ajout de Montgiscard qui n'existe pas
 L=len(data)
-data.loc[L]=['A0061','1.584556','43.461156','MONGISCARD']
-data = data.reindex([0,1,2,21,3,4,5,6,7,8,10,9,16,15,14,13,12,11,18,19,20,22,17])
+data.loc[L]=['A0061','1.584556','43.461156','MONTGISCARD']
+data = data.reindex([0,1,2,23,3,4,5,6,7,8,9,11,10,18,17,16,15,14,13,20,21,22,24,19,12])
 data = data.set_index(np.arange(len(data)))
 data.to_csv('data.csv')
 
 #%%
-# Calcul des distances avec les coordonnées GPS
+# calcul des distances
 import requests
 import json
 DIST = []
@@ -62,6 +67,7 @@ for i in range(len(data)):
     if i-1 < 0:
         x,y = (data['x'][i],data['y'][i])
     else:
+
         x,y=(data['x'][i-1],data['y'][i-1])
 
     x1,y1=(data['x'][i],data['y'][i])
@@ -84,5 +90,4 @@ prix = pd.read_csv("prix.csv", sep=';',usecols=['St-Jean-de-Vedas','Sete','Agde 
 'Carcassonne est','Carcassonne ouest','Bram','Castelnaudary','Villefranche-de-Lauragais','Nailloux','Mazeres-Saverdun','Peage de pamiers','Montgiscard','Peage de Toulouse sud/ouest'])
 
 prix = prix.drop(prix.index[[0,1,2,3,5,18,29,30,33,34,35,36,37,38,39,40,41,42]])
-
-
+prix = prix.set_index(np.arange(len(prix)))
