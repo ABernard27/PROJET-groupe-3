@@ -27,7 +27,7 @@ data.select_dtypes(include=['float64'])
 data = data.stack().str.replace(',','.').unstack()
 data = data.set_index(np.arange(len(data)))
 
-
+# transformation des coordonnées lambert93 en coordonnées WGS84
 inProj = Proj(init='epsg:2154')
 outProj = Proj(init='epsg:4326')
 L93 = np.array([data['x'],data['y']]).T
@@ -53,6 +53,7 @@ data = data.set_index(np.arange(len(data)))
 data.to_csv('data.csv')
 
 #%%
+# Calcul des distances avec les coordonnées GPS
 import requests
 import json
 DIST = []
@@ -61,7 +62,6 @@ for i in range(len(data)):
     if i-1 < 0:
         x,y = (data['x'][i],data['y'][i])
     else:
-
         x,y=(data['x'][i-1],data['y'][i-1])
 
     x1,y1=(data['x'][i],data['y'][i])
@@ -75,10 +75,9 @@ print(DIST)
 # source : https://ichi.pro/fr/distance-parcourue-entre-deux-ou-plusieurs-endroits-en-python-151146835025391
 
 # %%
-#lien temporaire
-# url = 'https://raw.githubusercontent.com/Eldohrim/Project_2021_HAX712X/Development/asltam/data/price-data.csv'
-# path_target = "./prix.csv"
-# download(url, path_target, replace=False)
+url = 'https://raw.githubusercontent.com/ABernard27/PROJET-groupe-3/master/Doc/prix.csv'
+path_target = "./prix.csv"
+download(url, path_target, replace=False)
 
 prix = pd.read_csv("prix.csv", sep=';',usecols=['St-Jean-de-Vedas','Sete','Agde Pezenas','Peage de Beziers-Cabrials','Beziers ouest','Narbonne est ',
 'Narbonne sud','Sigean ','Leucate','Perpignan nord','Perpignan sud','Le Boulou  (peage sys ferme)','Peage du Perthus','Frontiere Espagnole','Lezignan',
@@ -86,35 +85,4 @@ prix = pd.read_csv("prix.csv", sep=';',usecols=['St-Jean-de-Vedas','Sete','Agde 
 
 prix = prix.drop(prix.index[[0,1,2,3,5,18,29,30,33,34,35,36,37,38,39,40,41,42]])
 
-# %%
-# import osmnx as ox
-# import networkx as nx
-# import geopandas as gpd
-# import matplotlib.pyplot as plt
-# import pandas as pd
-# import folium
 
-# place_name = "Montpellier, France"
-# graph = ox.graph_from_place(place_name, network_type='drive')
-# fig, ax = ox.plot_graph(graph)
-# edges = ox.graph_to_gdfs(graph, nodes=False, edges=True)
-# edges.columns
-
-# graph_proj = ox.project_graph(graph)
-# fig, ax = ox.folium.plot_graph_folium(graph_proj)
-# plt.tight_layout()
-
-# source : https://automating-gis-processes.github.io/2017/lessons/L7/network-analysis.html
-
-#%%
-from pyroutelib3 import Router # Import the router
-router = Router("car") # Initialise it
-
-start = router.findNode(43.34515957, 3.28515783) # Find start and end nodes
-end = router.findNode(43.15416472, 1.61572443)
-
-status, route = router.doRoute(start, end) # Find the route - a list of OSM nodes
-
-if status == 'success':
-    routeLatLons = list(map(router.nodeLatLon, route)) # Get actual route coordinates
-# %%
