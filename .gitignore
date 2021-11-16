@@ -8,3 +8,4 @@ dist*
 .pytest_cache
 ignore*
 .DS_store
+.osm
