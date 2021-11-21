@@ -9,3 +9,4 @@ dist*
 ignore*
 .DS_store
 .osm
+.json
