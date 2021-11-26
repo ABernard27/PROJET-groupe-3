@@ -90,10 +90,10 @@ DISTANCE.to_csv('Distance.csv')
     
 # %%
 url = 'https://raw.githubusercontent.com/ABernard27/PROJET-groupe-3/Developpement/Document/tarif.csv'
-path_target = "./prix.csv"
+path_target = "./tarif.csv"
 download(url, path_target, replace=False)
 
-prix = pd.read_csv("prix.csv", sep=';',usecols=['St-Jean-de-Vedas','Sete','Agde Pezenas','Peage de Beziers-Cabrials','Beziers ouest','Narbonne est ',
+prix = pd.read_csv("tarif.csv", sep=';',usecols=['St-Jean-de-Vedas','Sete','Agde Pezenas','Peage de Beziers-Cabrials','Beziers ouest','Narbonne est ',
 'Narbonne sud','Sigean ','Leucate','Perpignan nord','Perpignan sud','Le Boulou  (peage sys ferme)','Peage du Perthus','Lezignan',
 'Carcassonne est','Carcassonne ouest','Bram','Castelnaudary','Villefranche-de-Lauragais','Nailloux','Mazeres-Saverdun','Peage de pamiers','Montgiscard','Peage de Toulouse sud/ouest','Peage de Toulouse sud/est'])
 
