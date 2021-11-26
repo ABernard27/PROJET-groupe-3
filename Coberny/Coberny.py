@@ -8,12 +8,22 @@ import pandas as pd
 import osmnx as ox
 #%%
 class carte:
+    """ Trace sur une carte la route passant par des points GPS données, sur l'autoroute. Donne également le nom du point, les temps de trajet et le nombre de kilomètres entre les portions. Ce programme utilise les données de ``openstreetmap``
 
-    def __init__(self,Coord,Name,Key):
+    :param numpy.ndarray Coord: Les coordonnées GPS en WSG84 : (longitude,latitude)
+    :param dataframe Name: Les noms des villes (ou autres) correspondant aux coordonnées
+    :param str Key: La clé API créée avec *openrouteservice*
+
+    .. warning:: 
         
-
+        Attention! La clé doit être créée par vos soins, une rubrique expliquant comment le faire est disponible. 
+    
+    :returns: La carte avec le tracé et les données sur le trajet
+    """
+        
+    def __init__(self,Coord,Name,Key):
         client = openrouteservice.Client(key=Key)
-        m = folium.Map(location=[43.1837661,3.0042121],zoom_start=10, control_scale=True,tiles="cartodbpositron")
+        m = folium.Map(location=[43.1837661,3.0042121],zoom_start=10, control_scale=True)
         for i in range (0,len(Coord)-1):
             coords= (tuple(Coord[i,:]),)+(tuple(Coord[i+1,:]),)
             res = client.directions(coords)
@@ -34,6 +44,5 @@ class carte:
             popup=Name[i],
             icon=folium.Icon(color='orange',icon='car',prefix='fa'),
             ).add_to(m)
-
-    
         m.save('map.html')
+# %%
