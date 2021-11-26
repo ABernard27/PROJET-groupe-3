@@ -89,7 +89,7 @@ DISTANCE.index=['St-Jean-de-Vedas','Sete','Agde Pezenas','Peage de Beziers-Cabri
 DISTANCE.to_csv('Distance.csv')
     
 # %%
-url = 'https://raw.githubusercontent.com/ABernard27/PROJET-groupe-3/master/Document/Prix.csv'
+url = 'https://raw.githubusercontent.com/ABernard27/PROJET-groupe-3/Developpement/Document/tarif.csv'
 path_target = "./prix.csv"
 download(url, path_target, replace=False)
 
