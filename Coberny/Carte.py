@@ -9,10 +9,10 @@ import osmnx as ox
 #%%
 class carte:
 
-    def __init__(self,Coord,Name):
+    def __init__(self,Coord,Name,Key):
         
 
-        client = openrouteservice.Client(key='5b3ce3597851110001cf6248dfd20bf8793e4e978b4bb0ca383bfd55')
+        client = openrouteservice.Client(key=Key)
         m = folium.Map(location=[43.1837661,3.0042121],zoom_start=10, control_scale=True,tiles="cartodbpositron")
         for i in range (0,len(Coord)-1):
             coords= (tuple(Coord[i,:]),)+(tuple(Coord[i+1,:]),)
