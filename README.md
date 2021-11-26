@@ -1,5 +1,5 @@
 ## Groupe Projet
-Ce projet est dirigé par Chery Fanny (fanny.chery@etu.umontpellier.fr), Côme Olivier (olivier.côme@etu.umontpellier.fr) et Bernard Anne (anne.bernard@etu.umontpellier.fr).
+Ce projet est dirigé par Chery Fanny (fanny.chery@etu.umontpellier.fr), Côme Olivier (olivier.come@etu.umontpellier.fr) et Bernard Anne (anne.bernard@etu.umontpellier.fr).
 
 ## Programme de Travail
 - Codage et visualisation de la carte permettant de déterminer le prix entre deux péages. 
