@@ -22,7 +22,7 @@ class carte:
     :returns: La carte avec le tracé et les données sur le trajet
     """
         
-    def __init__(self,Coord,Name,Key):
+    def action(Coord,Name,Key):
         start = time.time()
         client = openrouteservice.Client(key=Key)
         m = folium.Map(location=[43.1837661,3.0042121],zoom_start=10, control_scale=True)
@@ -50,4 +50,5 @@ class carte:
         end = time.time()
         Temps = (end-start)
         print("Temps passé pour exécuter la commande: {0:.5f} s.".format(end - start))
+        return m
 # %%
