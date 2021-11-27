@@ -6,6 +6,7 @@ import folium
 import numpy as np
 import pandas as pd
 import osmnx as ox
+import time
 #%%
 class carte:
     """ Trace sur une carte la route passant par des points GPS données, sur l'autoroute. Donne également le nom du point, les temps de trajet et le nombre de kilomètres entre les portions. Ce programme utilise les données de ``openstreetmap``
@@ -22,6 +23,7 @@ class carte:
     """
         
     def __init__(self,Coord,Name,Key):
+        start = time.time()
         client = openrouteservice.Client(key=Key)
         m = folium.Map(location=[43.1837661,3.0042121],zoom_start=10, control_scale=True)
         for i in range (0,len(Coord)-1):
@@ -45,4 +47,7 @@ class carte:
             icon=folium.Icon(color='orange',icon='car',prefix='fa'),
             ).add_to(m)
         m.save('map.html')
+        end = time.time()
+        Temps = (end-start)
+        print("Temps passé pour exécuter la commande: {0:.5f} s.".format(end - start))
 # %%
