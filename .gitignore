@@ -10,3 +10,10 @@ ignore*
 .DS_store
 .osm
 .json
+.aux
+.log
+.nav
+.out
+.vrb
+.toc
+.snm
