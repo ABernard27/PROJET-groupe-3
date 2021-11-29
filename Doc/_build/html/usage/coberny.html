@@ -72,13 +72,14 @@
 <h1>Carte<a class="headerlink" href="#carte" title="Lien permanent vers ce titre"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="Coberny.carte">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">Coberny.</span></span><span class="sig-name descname"><span class="pre">carte</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Coord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Coberny.carte" title="Lien permanent vers cette définition"></a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">Coberny.</span></span><span class="sig-name descname"><span class="pre">carte</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Coord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Coberny.carte" title="Lien permanent vers cette définition"></a></dt>
 <dd><p>Trace sur une carte la route passant par des points GPS données, sur l’autoroute. Donne également le nom du point, les temps de trajet et le nombre de kilomètres entre les portions. Ce programme utilise les données de <code class="docutils literal notranslate"><span class="pre">openstreetmap</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>Coord</strong> (<em>numpy.ndarray</em>) – Les coordonnées GPS en WSG84 : (longitude,latitude)</p></li>
-<li><p><strong>Name</strong> (<em>dataframe</em>) – Les noms des villes (ou autres) correspondant aux coordonnées</p></li>
+<li><p><strong>Name</strong> (<em>dataframe</em>) – Les noms des villes (ou autres) correspondant aux coordonnées (dans l’ordre)</p></li>
+<li><p><strong>prix</strong> (<em>dataframe</em>) – Les prix entre deux péages consécutifs</p></li>
 <li><p><strong>Key</strong> (<em>str</em>) – La clé API créée avec <em>openrouteservice</em></p></li>
 </ul>
 </dd>
