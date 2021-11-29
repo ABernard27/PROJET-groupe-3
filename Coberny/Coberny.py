@@ -22,7 +22,7 @@ class carte:
     :returns: La carte avec le tracé et les données sur le trajet
     """
         
-    def __init__(self,Coord,Name,Key):
+    def __init__(self,Coord,Name,Key,prix):
         start = time.time()
         client = openrouteservice.Client(key=Key)
         m = folium.Map(location=[43.1837661,3.0042121],zoom_start=10, control_scale=True)
@@ -38,8 +38,9 @@ class carte:
             
             distance_txt = "<h4> <b>Distance :&nbsp" + "<strong>"+str(round(res['routes'][0]['summary']['distance']/1000,1))+" Km </strong>" +"</h4></b>"
             duration_txt = "<h4> <b>Duration :&nbsp" + "<strong>"+str(round(res['routes'][0]['summary']['duration']/60,1))+" Mins. </strong>" +"</h4></b>"
-
-            folium.GeoJson(decoded).add_child(folium.Popup(distance_txt+duration_txt,max_width=300)).add_to(m)
+            test = "<h4> <b>Prix :&nbsp" + "<strong>"+str(prix[Name[i]][i+1])+"€ </strong>" +"</h4></b>"
+            folium.GeoJson(decoded).add_child(folium.Popup(test+distance_txt+duration_txt,max_width=500)).add_to(m)
+            
 
             folium.Marker(
             location=list(coords[0][::-1]),
