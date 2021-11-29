@@ -12,7 +12,8 @@ class carte:
     """ Trace sur une carte la route passant par des points GPS données, sur l'autoroute. Donne également le nom du point, les temps de trajet et le nombre de kilomètres entre les portions. Ce programme utilise les données de ``openstreetmap``
 
     :param numpy.ndarray Coord: Les coordonnées GPS en WSG84 : (longitude,latitude)
-    :param dataframe Name: Les noms des villes (ou autres) correspondant aux coordonnées
+    :param dataframe Name: Les noms des villes (ou autres) correspondant aux coordonnées (dans l'ordre)
+    :param dataframe prix: Les prix entre deux péages consécutifs
     :param str Key: La clé API créée avec *openrouteservice*
 
     .. warning:: 
