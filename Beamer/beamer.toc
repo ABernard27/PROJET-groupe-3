@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{Carte intéractive}{4}{0}{2}
+\beamer@sectionintoc {3}{Distribution des prix}{5}{0}{3}
+\beamer@sectionintoc {4}{Minimisation coût du trajet}{6}{0}{4}
