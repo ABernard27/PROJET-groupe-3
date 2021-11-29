@@ -5,13 +5,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 from download import download
 from pyproj import Proj, transform
+import time
 
 pd.options.display.max_rows = 50
 #%%
+start=time.time()
 url= 'https://static.data.gouv.fr/resources/gares-de-peage-du-reseau-routier-national-concede/20210224-175626/gares-peage-2019.csv'
 path_target = './gares-peage-2019.csv'
 download(url, path_target, replace=False)
-#%%
 
 data = pd.read_csv("gares-peage-2019.csv",sep=';',usecols=["route","x","y"," Nom gare "])
 data=data.loc[(data['route'] == 'A0009') | (data['route']=='A0061') | (data['route']=='A0062')| (data['route']=='A0066')| (data['route']=='A0075')| (data['route']=='A0709')]
@@ -23,7 +24,7 @@ data = data.loc[(data['x']=='767254,1') | (data[" Nom gare "]=='SETE            
 (data[" Nom gare "]=='CARCASSONNE EST') | (data[" Nom gare "]=='CARCASSONNE OUEST') | (data[" Nom gare "]=='BRAM') | (data[" Nom gare "]=='CASTELNAUDARY') | (data[" Nom gare "]=='VILLEFRANCHE DE LAURAGAIS') | 
 (data[" Nom gare "]=='NAILLOUX') | (data[" Nom gare "]=='MAZERES') | (data[" Nom gare "]=='PAMIER') | (data[" Nom gare "]=='TOULOUSE SUD-OUEST (ENTREE)') | (data[" Nom gare "]=='TOULOUSE SUD-EST (SORTIE )')
 | (data[" Nom gare "]=='PERPIGNAN NORD                          ')]
-#%%
+
 data.info(verbose=True)
 data.select_dtypes(include=['float64'])
 data = data.stack().str.replace(',','.').unstack()
@@ -54,9 +55,11 @@ data.loc[L]=['A0061','1.584556','43.461156','MONTGISCARD']
 data = data.reindex([0,1,2,23,3,4,5,6,7,8,9,11,10,18,17,16,15,14,13,20,21,22,24,19,12])
 data = data.set_index(np.arange(len(data)))
 data.to_csv('data.csv')
-
+end = time.time()
+print("Temps passé pour exécuter la commande: {0:.5f} s.".format(end - start))
 #%%
 # creation dataframe des distances
+start2 = time.time()
 import requests
 import json
 DIST = np.zeros((len(data),len(data)))
@@ -76,19 +79,21 @@ print(DIST)
 
 # source : https://ichi.pro/fr/distance-parcourue-entre-deux-ou-plusieurs-endroits-en-python-151146835025391
 
-#%%
 DIST2 = DIST + DIST.T
 
 DISTANCE = pd.DataFrame(DIST2,columns=['St-Jean-de-Vedas','Sete','Agde Pezenas','Peage de Beziers-Cabrials','Beziers ouest','Narbonne est ',
 'Narbonne sud','Sigean ','Leucate','Perpignan nord','Perpignan sud','Le Boulou  (peage sys ferme)','Peage du Perthus','Lezignan',
 'Carcassonne est','Carcassonne ouest','Bram','Castelnaudary','Villefranche-de-Lauragais','Nailloux','Mazeres-Saverdun','Peage de pamiers','Montgiscard','Peage de Toulouse sud/ouest','Peage de Toulouse sud/est'])
 
-DISTANCE.index=['St-Jean-de-Vedas','Sete','Agde Pezenas','Peage de Beziers-Cabrials','Beziers ouest','Narbonne est ',
-'Narbonne sud','Sigean ','Leucate','Perpignan nord','Perpignan sud','Le Boulou  (peage sys ferme)','Peage du Perthus','Lezignan',
-'Carcassonne est','Carcassonne ouest','Bram','Castelnaudary','Villefranche-de-Lauragais','Nailloux','Mazeres-Saverdun','Peage de pamiers','Montgiscard','Peage de Toulouse sud/ouest','Peage de Toulouse sud/est']
+DISTANCE.index=['MONTPELLIER','SETE                                    ','AGDE','BEZIERS CABRIALS (ENTReE)','BEZIERS OUEST','NARBONNE EST','NARBONNE SUD','SIGEAN',
+'LEUCATE','PERPIGNAN SUD','BOULOU (FERMe)','LE PERTHUS-LE BOULOU','LEZIGNAN', 'CARCASSONNE EST','CARCASSONNE OUEST','BRAM','CASTELNAUDARY','VILLEFRANCHE DE LAURAGAIS','NAILLOUX','MAZERES','PAMIER','MONTGISCARD','TOULOUSE SUD-OUEST (ENTREE)','TOULOUSE SUD-EST (SORTIE )','PERPIGNAN NORD                          ']
+DISTANCE.columns=('MONTPELLIER','SETE                                    ','AGDE','BEZIERS CABRIALS (ENTReE)','BEZIERS OUEST','NARBONNE EST','NARBONNE SUD','SIGEAN',
+'LEUCATE','PERPIGNAN SUD','BOULOU (FERMe)','LE PERTHUS-LE BOULOU','LEZIGNAN', 'CARCASSONNE EST','CARCASSONNE OUEST','BRAM','CASTELNAUDARY','VILLEFRANCHE DE LAURAGAIS','NAILLOUX','MAZERES','PAMIER','MONTGISCARD','TOULOUSE SUD-OUEST (ENTREE)','TOULOUSE SUD-EST (SORTIE )','PERPIGNAN NORD                          ')
 DISTANCE.to_csv('Distance.csv')
-    
+end2 = time.time()
+print("Temps passé pour exécuter la commande: {0:.5f} s.".format(end2 - start2))
 # %%
+start3 = time.time()
 url = 'https://raw.githubusercontent.com/ABernard27/PROJET-groupe-3/Developpement/Document/tarif.csv'
 path_target = "./tarif.csv"
 download(url, path_target, replace=False)
@@ -97,9 +102,13 @@ prix = pd.read_csv("tarif.csv", sep=';',usecols=['St-Jean-de-Vedas','Sete','Agde
 'Narbonne sud','Sigean ','Leucate','Perpignan nord','Perpignan sud','Le Boulou  (peage sys ferme)','Peage du Perthus','Lezignan',
 'Carcassonne est','Carcassonne ouest','Bram','Castelnaudary','Villefranche-de-Lauragais','Nailloux','Mazeres-Saverdun','Peage de pamiers','Montgiscard','Peage de Toulouse sud/ouest','Peage de Toulouse sud/est'])
 
-prix = prix.drop(prix.index[[0,1,2,3,5,18,29,30,33,34,35,36,37,38,39,40,41,42]])
-prix.index=['St-Jean-de-Vedas','Sete','Agde Pezenas','Peage de Beziers-Cabrials','Beziers ouest','Narbonne est ',
-'Narbonne sud','Sigean ','Leucate','Perpignan nord','Perpignan sud','Le Boulou  (peage sys ferme)','Peage du Perthus','Lezignan',
-'Carcassonne est','Carcassonne ouest','Bram','Castelnaudary','Villefranche-de-Lauragais','Nailloux','Mazeres-Saverdun','Peage de pamiers','Montgiscard','Peage de Toulouse sud/ouest','Peage de Toulouse sud/est']
+prix = prix.drop(prix.index[[0,1,2,3,5,18,19,29,30,33,35,36,37,38,39,40,41,42]])
 
+prix.columns=('MONTPELLIER','SETE                                    ','AGDE','BEZIERS CABRIALS (ENTReE)','BEZIERS OUEST','NARBONNE EST','NARBONNE SUD','SIGEAN',
+'LEUCATE','PERPIGNAN NORD                          ','PERPIGNAN SUD','BOULOU (FERMe)','LE PERTHUS-LE BOULOU','LEZIGNAN', 'CARCASSONNE EST','CARCASSONNE OUEST','BRAM','CASTELNAUDARY','VILLEFRANCHE DE LAURAGAIS','NAILLOUX','MAZERES','PAMIER','MONTGISCARD','TOULOUSE SUD-OUEST (ENTREE)','TOULOUSE SUD-EST (SORTIE )')
+prix = prix.set_index(np.arange(len(prix)))
+prix.fillna(0.0,inplace=True)
 prix.to_csv('Prix.csv')
+end3 = time.time()
+print("Temps passé pour exécuter la commande: {0:.5f} s.".format(end3 - start3))
+# %%
