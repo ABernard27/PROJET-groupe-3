@@ -13,7 +13,8 @@ from IPython import get_ipython
 import networkx as nx
 from networkx.algorithms.boundary import edge_boundary
 from networkx.generators.trees import prefix_tree
-
+import panel as pn
+pn.extension(comms='vscode')
 
 
 pd.options.display.max_rows = 50
@@ -157,3 +158,27 @@ class distribution(object):
         width=1
         plt.bar(x, height, width,color='orange', alpha=0.3 ,align='edge',edgecolor='orange', linewidth = 3 )
         plt.xticks(np.arange(len(X)),X, rotation=45 )
+
+        
+select1 = pn.widgets.Select(name='Entrée', options=['St-Jean-de-Vedas','Sete','Agde Pezenas','Peage de Beziers-Cabrials','Beziers ouest','Narbonne est ',
+'Narbonne sud','Sigean ','Leucate','Perpignan nord','Perpignan sud','Le Boulou  (peage sys ferme)','Peage du Perthus','Lezignan',
+'Carcassonne est','Carcassonne ouest','Bram','Castelnaudary','Villefranche-de-Lauragais','Nailloux','Mazeres-Saverdun','Peage de pamiers','Montgiscard','Peage de Toulouse sud/ouest','Peage de Toulouse sud/est']
+)
+select1
+select2 = pn.widgets.Select(name='Sortie', options=['St-Jean-de-Vedas','Sete','Agde Pezenas','Peage de Beziers-Cabrials','Beziers ouest','Narbonne est ',
+'Narbonne sud','Sigean ','Leucate','Perpignan nord','Perpignan sud','Le Boulou  (peage sys ferme)','Peage du Perthus','Lezignan',
+'Carcassonne est','Carcassonne ouest','Bram','Castelnaudary','Villefranche-de-Lauragais','Nailloux','Mazeres-Saverdun','Peage de pamiers','Montgiscard','Peage de Toulouse sud/ouest','Peage de Toulouse sud/est']
+)
+select2
+
+A=nx.shortest_path(a, select1.value , select2.value )
+B=nx.subgraph(a,A)
+nx.draw(B,with_labels= True)
+K=[]
+if (len(A)>2):
+    for i in range (len(A)-2):
+        K.append(f"{i}")
+else : K=['0']
+
+select3 = pn.widgets.Select(name='Nombre de sortie maximum autorisé', options=K)
+select3
