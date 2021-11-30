@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from download import download
 from pyproj import Proj, transform
+import requests
+import json
 
 pd.options.display.max_rows = 50
 #%%
