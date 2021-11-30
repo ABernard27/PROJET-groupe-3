@@ -7,6 +7,12 @@ from download import download
 from pyproj import Proj, transform
 import requests
 import json
+import seaborn as sns
+from ipywidgets import widgets, interact, interactive, fixed, interact_manual
+from IPython import get_ipython
+
+
+
 
 pd.options.display.max_rows = 50
 #%%
@@ -105,3 +111,8 @@ prix.index=['St-Jean-de-Vedas','Sete','Agde Pezenas','Peage de Beziers-Cabrials'
 'Carcassonne est','Carcassonne ouest','Bram','Castelnaudary','Villefranche-de-Lauragais','Nailloux','Mazeres-Saverdun','Peage de pamiers','Montgiscard','Peage de Toulouse sud/ouest','Peage de Toulouse sud/est']
 
 prix.to_csv('Prix.csv')
+
+
+
+
+f
