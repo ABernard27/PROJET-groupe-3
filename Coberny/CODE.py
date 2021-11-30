@@ -115,8 +115,26 @@ prix.index=['St-Jean-de-Vedas','Sete','Agde Pezenas','Peage de Beziers-Cabrials'
 
 prix.to_csv('Prix.csv')
 
+tarif = pd.read_csv("tarif.csv", sep=';')
+tarif.to_csv('tarifs.csv')
 
+select1 = pn.widgets.Select(name='Entrée', options=tarif['Villes'].values.tolist())
+select1
+select2 = pn.widgets.Select(name='Sortie', options=tarif['Villes'].values.tolist())
+select2
 
+A=nx.shortest_path(a, select1.value , select2.value )
+B=nx.subgraph(a,A)
+nx.draw(B,with_labels= True)
+
+K=[]
+if (len(A)>2):
+    for i in range (len(A)-2):
+        K.append(f"{i}")
+else : K=['0']
+
+select3 = pn.widgets.Select(name='Nombre de sortie maximum autorisé', options=K)
+select3
 
 class distribution(object):
     def __init__(self,Entree,Sortie,Distance,Prix):
@@ -127,7 +145,7 @@ class distribution(object):
     
     def __Distribution__(self):
         G = nx.Graph()
-        G.add_nodes_from(data[" Nom gare "])
+        G.add_nodes_from(tarif['Villes'])
         G=nx.Graph(incoming_graph_data=prix)
         a=nx.minimum_spanning_tree(G)
         nx.draw(a, with_labels= True)
@@ -160,25 +178,3 @@ class distribution(object):
         plt.xticks(np.arange(len(X)),X, rotation=45 )
 
         
-select1 = pn.widgets.Select(name='Entrée', options=['St-Jean-de-Vedas','Sete','Agde Pezenas','Peage de Beziers-Cabrials','Beziers ouest','Narbonne est ',
-'Narbonne sud','Sigean ','Leucate','Perpignan nord','Perpignan sud','Le Boulou  (peage sys ferme)','Peage du Perthus','Lezignan',
-'Carcassonne est','Carcassonne ouest','Bram','Castelnaudary','Villefranche-de-Lauragais','Nailloux','Mazeres-Saverdun','Peage de pamiers','Montgiscard','Peage de Toulouse sud/ouest','Peage de Toulouse sud/est']
-)
-select1
-select2 = pn.widgets.Select(name='Sortie', options=['St-Jean-de-Vedas','Sete','Agde Pezenas','Peage de Beziers-Cabrials','Beziers ouest','Narbonne est ',
-'Narbonne sud','Sigean ','Leucate','Perpignan nord','Perpignan sud','Le Boulou  (peage sys ferme)','Peage du Perthus','Lezignan',
-'Carcassonne est','Carcassonne ouest','Bram','Castelnaudary','Villefranche-de-Lauragais','Nailloux','Mazeres-Saverdun','Peage de pamiers','Montgiscard','Peage de Toulouse sud/ouest','Peage de Toulouse sud/est']
-)
-select2
-
-A=nx.shortest_path(a, select1.value , select2.value )
-B=nx.subgraph(a,A)
-nx.draw(B,with_labels= True)
-K=[]
-if (len(A)>2):
-    for i in range (len(A)-2):
-        K.append(f"{i}")
-else : K=['0']
-
-select3 = pn.widgets.Select(name='Nombre de sortie maximum autorisé', options=K)
-select3
