@@ -118,6 +118,7 @@ prix.to_csv('Prix.csv')
 tarif = pd.read_csv("tarif.csv", sep=';')
 tarif.to_csv('tarifs.csv')
 
+# Wigdet Entrée-Sortie
 select1 = pn.widgets.Select(name='Entrée', options=tarif['Villes'].values.tolist())
 select1
 select2 = pn.widgets.Select(name='Sortie', options=tarif['Villes'].values.tolist())
@@ -133,6 +134,7 @@ if (len(A)>2):
         K.append(f"{i}")
 else : K=['0']
 
+# Widget constrainte
 select3 = pn.widgets.Select(name='Nombre de sortie maximum autorisé', options=K)
 select3
 
