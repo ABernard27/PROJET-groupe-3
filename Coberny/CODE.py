@@ -11,6 +11,8 @@ import seaborn as sns
 from ipywidgets import widgets, interact, interactive, fixed, interact_manual
 from IPython import get_ipython
 import networkx as nx
+from networkx.algorithms.boundary import edge_boundary
+from networkx.generators.trees import prefix_tree
 
 
 
