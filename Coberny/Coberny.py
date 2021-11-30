@@ -50,6 +50,5 @@ class carte:
             ).add_to(m)
         m.save('map.html')
         end = time.time()
-        Temps = (end-start)
         print("Temps passé pour exécuter la commande: {0:.5f} s.".format(end - start))
 # %%
