@@ -117,4 +117,43 @@ prix.to_csv('Prix.csv')
 
 
 
-f
+class distribution(object):
+    def __init__(self,Entree,Sortie,Distance,Prix):
+        self.Entree = Entree
+        self.Sortie = Sortie
+        self.Distance = Distance
+        self.Prix = Prix
+    
+    def __Distribution__(self):
+        G = nx.Graph()
+        G.add_nodes_from(data[" Nom gare "])
+        G=nx.Graph(incoming_graph_data=prix)
+        a=nx.minimum_spanning_tree(G)
+        nx.draw(a, with_labels= True)
+        X=nx.shortest_path(a, 'Sete' , 'Bram' )
+        B=nx.subgraph(a,X)
+        nx.draw(B,with_labels= True)
+
+        DISTKM = np.zeros(len(X)-1)
+        for i in range(len(X)-1):
+            if(DISTANCE[X[i]][X[i+1]]!=0):
+                DISTKM[i]=(prix[X[i]][X[i+1]])/(DISTANCE[X[i]] [X[i+1]])
+            else : DISTKM[i]=0    
+
+        def kde_explore(bw=0.2):
+            fig, ax = plt.subplots(1, 1, figsize=(5, 5))
+            sns.kdeplot(y=DISTKM, bw_adjust=bw, shade=True, vertical=True, cut=0, ax=ax, color='orange')
+            plt.xlabel('Trajet')
+            plt.ylabel('Prix au kilomètre')
+            plt.title("Distribution des prix ")
+            plt.tight_layout()
+            plt.show()
+
+        interact(kde_explore, bw=(0.001, 2, 0.01))
+
+        P=np.arange(len(X)-1)
+        x=P
+        height=DISTKM
+        width=1
+        plt.bar(x, height, width,color='orange', alpha=0.3 ,align='edge',edgecolor='orange', linewidth = 3 )
+        plt.xticks(np.arange(len(X)),X, rotation=45 )
