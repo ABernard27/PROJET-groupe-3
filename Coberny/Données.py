@@ -9,6 +9,7 @@ import time
 
 pd.options.display.max_rows = 50
 #%%
+
 start=time.time()
 url= 'https://static.data.gouv.fr/resources/gares-de-peage-du-reseau-routier-national-concede/20210224-175626/gares-peage-2019.csv'
 path_target = './gares-peage-2019.csv'
@@ -44,7 +45,6 @@ A2 = np.asarray(A).reshape(-1,1)
 B2 = np.asarray(B).reshape(-1,1)
 Coord=np.column_stack([A2,B2])
 
-# source : https://moonbooks.org/Articles/Convertir-des-coordonnees-Lambert-93-en-longitude-et-latitude-avec-python-3/
 
 data['x']=data['x'].replace(np.asarray(data['x']).reshape(-1,1),A2)
 data['y']=data['y'].replace(np.asarray(data['y']).reshape(-1,1),B2)
@@ -76,8 +76,6 @@ for i in range(len(data)):
         route2 = routes2.get("routes")[0]
         DIST[i,j]=min(round(route['distance']/1000),round(route2['distance']/1000))
 print(DIST)
-
-# source : https://ichi.pro/fr/distance-parcourue-entre-deux-ou-plusieurs-endroits-en-python-151146835025391
 
 DIST2 = DIST + DIST.T
 
