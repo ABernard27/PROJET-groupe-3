@@ -13,9 +13,9 @@ pd.options.display.max_rows = 50
 start = time.time()
 url = 'https://static.data.gouv.fr/resources/gares-de-peage-du-reseau-routier-national-concede/20210224-175626/gares-peage-2019.csv'
 path_target = './gares-peage-2019.csv'
-download(url, path_target, replace = False)
+download(url, path_target, replace=False)
 
-data = pd.read_csv("gares-peage-2019.csv", sep=';', usecols = ["route","x","y"," Nom gare "])
+data = pd.read_csv("gares-peage-2019.csv", sep = ';', usecols = ["route", "x", "y", " Nom gare "])
 data = data.loc[(data['route'] == 'A0009') | (data['route'] == 'A0061') | (data['route'] == 'A0062')| 
 (data['route'] == 'A0066')| (data['route'] == 'A0075')| (data['route'] == 'A0709')]
 
@@ -31,16 +31,16 @@ data = data.loc[(data['x'] == '767254,1') | (data[" Nom gare "] == 'SETE        
 (data[" Nom gare "] == 'TOULOUSE SUD-EST (SORTIE )')
 | (data[" Nom gare "] == 'PERPIGNAN NORD                          ')]
 
-data.info(verbose = True)
-data.select_dtypes(include = ['float64'])
+data.info(verbose=True)
+data.select_dtypes(include=['float64'])
 data = data.stack().str.replace(',','.').unstack()
 data = data.set_index(np.arange(len(data)))
 
 # transformation des coordonnées lambert93 en coordonnées WGS84
 
-inProj = Proj(init = 'epsg:2154')
-outProj = Proj(init = 'epsg:4326')
-L93 = np.array([data['x'],data['y']]).T
+inProj = Proj(init='epsg:2154')
+outProj = Proj(init='epsg:4326')
+L93 = np.array([data['x'], data['y']]).T
 
 coord = transform(inProj, outProj, L93[:, 0], L93[:, 1])
 print(coord)
@@ -71,8 +71,8 @@ DIST = np.zeros((len(data), len(data)))
 
 for i in range(len(data)):
     for j in range(i, len(data)):
-        x1,y1 = (data['x'][j], data['y'][j])
-        x,y = (data['x'][i], data['y'][i])
+        x1, y1 = (data['x'][j], data['y'][j])
+        x, y = (data['x'][i], data['y'][i])
         r = requests.get(f"http://router.project-osrm.org/route/v1/car/{x}, {y}; {x1}, {y1}?overview=false""")
         r2 = requests.get(f"http://router.project-osrm.org/route/v1/car/{x1}, {y1}; {x}, {y}?overview=false""")
         routes = json.loads(r.content)
