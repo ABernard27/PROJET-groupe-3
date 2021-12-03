@@ -33,14 +33,14 @@ def GetListOfPossibleExit(entrance, outlet):
     return listOfExit
 
 # Retourne la contrainte K qui correspond au nombre total de sorties
-# qu'on peut empreinter entre la ville de départ (entrance) et 
+# qu'on peut emprunter entre la ville de départ (entrance) et 
 # la ville d'arrivée (outlet)
 def GetKMaxConstraint(entrance, outlet):
     k = len(GetListOfPossibleExit(entrance, outlet))
     return k
 
-# Retourne la liste de tous les chemins qu'on peut empreinter en fonction
-# du nombre de sorties (nbr_exit) utilisées entre la ville de départ
+# Retourne la liste de tous les chemins qu'on peut emprunter en fonction
+# du nombre de sorties (nbr_exit) utilisé entre la ville de départ
 # et celle d'arrivée
 def GetListOfPath(entrance, outlet, nbr_exit):
     listOfExit = GetListOfPossibleExit(entrance, outlet)
@@ -49,6 +49,9 @@ def GetListOfPath(entrance, outlet, nbr_exit):
         listOfPath[i] = (entrance,) + listOfPath[i] + (outlet,)
     return listOfPath
 
+# Création du graph représentant tous les itinéraires qu'on peut 
+# emprunter (entre la ville de départ et celle d'arrivée)
+# en fonction du nombre de sorties (nbr_exit) utilisé 
 def CreateGraphOfPath(data, entrance, outlet, nbr_exit):
     G_nbr_exit = nx.DiGraph()
     cities = data.columns[0]
