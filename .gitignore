@@ -10,3 +10,11 @@ ignore*
 .DS_store
 .osm
 .json
+beamer.aux
+beamer.log
+beamer.nav
+beamer.out
+beamer.vrb
+beamer.toc
+beamer.snm
+beamer.synctex.gz

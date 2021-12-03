@@ -7,6 +7,13 @@ Ce projet est dirigé par Chery Fanny (fanny.chery@etu.umontpellier.fr), Côme O
 - Fonction test permettant de vérifier si l'algorithme fonctionne
 - Création du beamer et tournage de la vidéo
 
+## Création des données
+Pour la création des données nous avons utilisé plusieurs packages. Tout d'abord nous avons utilisé la package ```download``` afin de télécharger les données provenant d'un site internet. De plus, à l'aide de ```pandas```nous avons chargé les fichiers csv afin de les modifier pour récupérer uniquement les éléments souhaités. 
+
+- Nous avons, dans un premier temps, créé un dataframe contenant les noms des gares, les coordonnées et les autoroutes. Pour cela il a fallu modifier les coordonnées qui étaient dans un format L93 pour les mettre en WGS84 (utilisation de ```pyproj```). 
+- Le dataframe créé, nous l'avons utilisé pour créer la matrice puis le dataframe des distances. Pour cela nous avons utiliser ```requests```et ```json```pour faire des requêtes de distance entre chaque coordonnées du dataframe créé précédemment. Avec ceci nous recueillons les distances entre A et B mais nous souhaitons savoir si le trajet entre B et A est identique. Ce qui n'est pas nécessairement le cas car les packages utilisent ```openstreetmap``` qui suit la route tout le long. Nous avons donc fait de A vers B puis de B vers A pour prendre le minimum des deux. Nous obtenons alors une matrice triangulaire que nous rendons symétrique. 
+- Pour le dataframe des prix nous avons simplement reporté le fichier que nous avions en fichier .csv pour l'utiliser avec ```pandas```et choisir les péages voulus. Puis nous avons renommé les colonnes pour être cohérent avec les autres dataframe.
+
 ## Programme détaillé
 Nous allons tout d'abord créer les tableaux de données contenant les prix des péages et les distances séparant ces péages. Les données des prix sont fournis sur le pdf suivant : https://public-content.vinci-autoroutes.com/PDF/Tarifs-peage-asf-vf/ASF-C1-TARIFS-WEB-2021-maille-vf.pdf 
 Pour les distances il nous faut utiliser  les coordonnées des péages Lambert93, les transformer en WGS84 puis déterminer les distances à l'aide du package ```json``` et ```requests```. 
