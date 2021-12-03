@@ -1,5 +1,0 @@
-Carte
-=======
-
-.. autofunction:: Coberny.carte 
-
