@@ -3,9 +3,6 @@ import openrouteservice
 import json 
 from openrouteservice import convert
 import folium
-import numpy as np
-import pandas as pd
-import osmnx as ox
 import time
 #%%
         
