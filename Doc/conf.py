@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('/Users/LoRdi-Region/Desktop/FAC/Licence:Mast
 # -- Project information -----------------------------------------------------
 
 project = 'Coberny'
-copyright = '2021, Anne Bernard'
+copyright = '2021, Anne Bernard, Fanny Chery, Olivier Côme'
 author = 'Anne Bernard'
 
 # The full version, including alpha/beta/rc tags

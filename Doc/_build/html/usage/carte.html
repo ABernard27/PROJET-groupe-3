@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Comment installer Coberny &mdash; Documentation Coberny 2021, Anne Bernard, Fanny Chery, Olivier Côme</title>
+  <title>Carte &mdash; Documentation Coberny 2021, Anne Bernard, Fanny Chery, Olivier Côme</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Recherche" href="../search.html" />
-    <link rel="next" title="Carte" href="coberny.html" />
-    <link rel="prev" title="Bienvenue sur la documentation de Coberny" href="../index.html" /> 
+    <link rel="next" title="Créer une clé API" href="openrouteservice.html" />
+    <link rel="prev" title="Comment installer Coberny" href="Installation.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,8 +39,8 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Comment installer Coberny</a></li>
-<li class="toctree-l1"><a class="reference internal" href="coberny.html">Carte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Comment installer Coberny</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Carte</a></li>
 <li class="toctree-l1"><a class="reference internal" href="openrouteservice.html">Créer une clé API</a></li>
 </ul>
 
@@ -58,9 +58,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Comment installer Coberny</li>
+      <li>Carte</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/usage/Installation.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+            <a href="../_sources/usage/carte.rst.txt" rel="nofollow"> Afficher la source de la page</a>
       </li>
   </ul>
   <hr/>
@@ -68,20 +68,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="comment-installer-coberny">
-<h1>Comment installer Coberny<a class="headerlink" href="#comment-installer-coberny" title="Lien permanent vers ce titre"></a></h1>
-<p>Coberny est un package python facilement utilisable. Il peut être installer sur un terminal à l’aide de la commande suivante :</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ABernard27</span><span class="o">/</span><span class="n">PROJET</span><span class="o">-</span><span class="n">groupe</span><span class="o">-</span><span class="mi">3</span>
-</pre></div>
+  <section id="carte">
+<h1>Carte<a class="headerlink" href="#carte" title="Lien permanent vers ce titre"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="Coberny.carte">
+<span class="sig-prename descclassname"><span class="pre">Coberny.</span></span><span class="sig-name descname"><span class="pre">carte</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Coord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Coberny.carte" title="Lien permanent vers cette définition"></a></dt>
+<dd><p>Trace sur une carte la route passant par des points GPS données, sur l’autoroute. Donne également le nom du point, les temps de trajet et le nombre de kilomètres entre les portions. Ce programme utilise les données de <code class="docutils literal notranslate"><span class="pre">openstreetmap</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Coord</strong> (<em>numpy.ndarray</em>) – Les coordonnées GPS en WSG84 : (longitude,latitude)</p></li>
+<li><p><strong>Name</strong> (<em>dataframe</em>) – Les noms des villes (ou autres) correspondant aux coordonnées (dans l’ordre)</p></li>
+<li><p><strong>prix</strong> (<em>dataframe</em>) – Les prix entre deux péages consécutifs</p></li>
+<li><p><strong>Key</strong> (<em>str</em>) – La clé API créée avec <em>openrouteservice</em></p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<p>Attention! La clé doit être créée par vos soins, une rubrique expliquant comment le faire est disponible.</p>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>La carte avec le tracé et les données sur le trajet</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
-        <a href="../index.html" class="btn btn-neutral float-left" title="Bienvenue sur la documentation de Coberny" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
-        <a href="coberny.html" class="btn btn-neutral float-right" title="Carte" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Installation.html" class="btn btn-neutral float-left" title="Comment installer Coberny" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="openrouteservice.html" class="btn btn-neutral float-right" title="Créer une clé API" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

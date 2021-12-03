@@ -5,6 +5,8 @@
 
 Bienvenue sur la documentation de Coberny
 =================================================
+Utilisez Coberny pour visualiser, optimiser et économiser votre temps et votre argent lors de vos déplacements en Occitanie.
+
 
 .. toctree::
    :maxdepth: 2
@@ -12,5 +14,10 @@ Bienvenue sur la documentation de Coberny
 
 .. toctree::
    usage/Installation.rst
-   usage/coberny.rst
    usage/openrouteservice.rst
+
+Documentation des fonctions de Coberny
+--------------------------------------
+
+.. toctree::
+   usage/carte.rst
