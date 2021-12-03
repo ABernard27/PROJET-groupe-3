@@ -28,4 +28,3 @@ Suite à ces 3 axes majeurs nous créerons des fonctions test avec ```pytest``` 
 
 ## Répartition du Travail
 Le projet se partageant en 3 grosses phases de travail, nous aurons un objectif chacun. Bernard Anne s'occupera de créer la carte intéractive. Chery Fanny fera la partie sur la distribution des prix et Côme Olivier se chargera de la minimisation du coût du trajet. Malgré cette répartition il est évident que chacun d'entre nous travaillera un peu sur chaque partie nous sommes avant tout une équipe et nous travaillerons très souvent tous ensemble. 
-
