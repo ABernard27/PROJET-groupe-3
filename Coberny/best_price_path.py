@@ -9,9 +9,9 @@ import pandas as pd
 import networkx as nx
 from networkx.algorithms import dijkstra_path
 import itertools
+import time
+import datetime as dt
 
-df_price = pd.read_csv('prix.csv')
-df_price = df_price.fillna(0)
 
 # Retourne la liste de toutes les villes du dataframe
 def GetListOfcolnames(data):
@@ -54,7 +54,7 @@ def GetListOfPath(data, entrance, outlet, nbr_exit):
 # emprunter (entre la ville de départ et celle d'arrivée)
 # en fonction du nombre de sorties (nbr_exit) utilisé 
 def CreateGraphOfPath(data, entrance, outlet, nbr_exit):
-    G_nbr_exit = nx.DiGraph()
+    G_nbr_exit = nx.Graph()
     cities = data.columns[0]
     if nbr_exit == 0:
         G_nbr_exit.add_nodes_from([entrance, outlet])
@@ -92,6 +92,8 @@ def ShortestPathWeight(G, entrance, outlet):
         w += d['weight']
     return w
 
+# Retourne le couple composé du chemin optimal et du prix final (minimal)
+# que l'on va payer en empruntant ce chemin
 def FindBestPathForPrice(data, entrance, outlet):
     K = GetKMaxConstraint(data, entrance, outlet)
     listOfSP = []
@@ -104,3 +106,38 @@ def FindBestPathForPrice(data, entrance, outlet):
     best_price_index = listOfSPWeight.index(best_price)
     bestPathForPrice = listOfSP[best_price_index]
     return (bestPathForPrice, best_price)
+
+# Retourne le graph du chemin optimal ie le chemin qui revient le moins cher
+# entre la ville de départ et celle d'arrivée
+def CreateGraphOfBestPathForPrice(data, entrance, outlet):
+    cities = data.columns[0]
+    listOfEdges = []
+    d_edges_labels = {}
+    G_bestPath = nx.Graph()
+    couple = FindBestPathForPrice(data, entrance, outlet)
+    bestPathForPrice = couple[0]
+    G_bestPath.add_nodes_from(bestPathForPrice)
+    for vx in range(len(bestPathForPrice)-1):
+        row_index = int(data[data[cities] == bestPathForPrice[vx]].index[0])
+        col_index = df_price.columns.get_loc(bestPathForPrice[vx+1])
+        listOfEdges.append(
+            (bestPathForPrice[vx], bestPathForPrice[vx+1], data.iloc[row_index,col_index])
+            )
+        d_edges_labels[(str(bestPathForPrice[vx]), str(bestPathForPrice[vx+1]))] = str(
+            data.iloc[row_index,col_index]
+            )
+    G_bestPath.add_weighted_edges_from(listOfEdges)
+    return nx.draw(G_bestPath, with_labels = True)
+    # nx.draw_networkx_edge_labels(G_bestPath, pos=nx.spring_layout(G_bestPath),
+    #                              edge_labels = d_edges_labels)
+
+if __name__ == '__main__':
+    df_price = pd.read_csv('prix.csv')
+    df_price = df_price.fillna(0)
+    startTime = time.time()
+    print('Couple meilleur chemin et prix: ', FindBestPathForPrice(df_price, 'Sete', 'Montgiscard'))
+    CreateGraphOfBestPathForPrice(df_price, 'Sete', 'Montgiscard')
+    runTime = time.time() - startTime
+    roundRunTime = str(dt.timedelta(seconds=runTime))
+    print('Runtime = ', runTime, ' secondes = ', roundRunTime)
+    
