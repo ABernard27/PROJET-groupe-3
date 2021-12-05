@@ -1,5 +1,5 @@
 from setuptools import setup
-from biketrauma import __version__ as version
+from Coberny import __version__ as version
 
 setup(
   name='Coberny',
