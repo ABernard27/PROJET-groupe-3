@@ -1,6 +1,5 @@
 Carte
 =======
 
-.. automodule:: Coberny.map.Carte
-   :members:  
-
+.. automodule: Coberny.map
+   :members: 
