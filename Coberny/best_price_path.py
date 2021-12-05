@@ -11,8 +11,10 @@ from networkx.algorithms import dijkstra_path
 import itertools
 import time
 import datetime as dt
+import matplotlib.pyplot as plt
 
-
+df_price = pd.read_csv('prix.csv')
+df_price = df_price.fillna(0)
 # Retourne la liste de toutes les villes du dataframe
 def GetListOfcolnames(data):
     listofColnames = list(data.columns)[1:]
@@ -54,7 +56,7 @@ def GetListOfPath(data, entrance, outlet, nbr_exit):
 # emprunter (entre la ville de départ et celle d'arrivée)
 # en fonction du nombre de sorties (nbr_exit) utilisé 
 def CreateGraphOfPath(data, entrance, outlet, nbr_exit):
-    G_nbr_exit = nx.Graph()
+    G_nbr_exit = nx.DiGraph()
     cities = data.columns[0]
     if nbr_exit == 0:
         G_nbr_exit.add_nodes_from([entrance, outlet])
@@ -109,13 +111,21 @@ def FindBestPathForPrice(data, entrance, outlet):
 
 # Retourne le graph du chemin optimal ie le chemin qui revient le moins cher
 # entre la ville de départ et celle d'arrivée
+# Les sorties intermédiraires sont coloriées en orange
+# La ville de départ et d'arrivée sont coloriées en bleu
 def CreateGraphOfBestPathForPrice(data, entrance, outlet):
     cities = data.columns[0]
+    listOfNodesColors = []
     listOfEdges = []
-    d_edges_labels = {}
-    G_bestPath = nx.Graph()
+#    d_edges_labels = {}
+    G_bestPath = nx.DiGraph()
     couple = FindBestPathForPrice(data, entrance, outlet)
     bestPathForPrice = couple[0]
+    for node in bestPathForPrice:
+        if (node != entrance) and (node != outlet):
+            listOfNodesColors.append('tab:orange')
+        else:
+            listOfNodesColors.append('tab:blue')
     G_bestPath.add_nodes_from(bestPathForPrice)
     for vx in range(len(bestPathForPrice)-1):
         row_index = int(data[data[cities] == bestPathForPrice[vx]].index[0])
@@ -123,21 +133,25 @@ def CreateGraphOfBestPathForPrice(data, entrance, outlet):
         listOfEdges.append(
             (bestPathForPrice[vx], bestPathForPrice[vx+1], data.iloc[row_index,col_index])
             )
-        d_edges_labels[(str(bestPathForPrice[vx]), str(bestPathForPrice[vx+1]))] = str(
-            data.iloc[row_index,col_index]
-            )
+        # d_edges_labels[(str(bestPathForPrice[vx]), str(bestPathForPrice[vx+1]))] = str(
+        #     data.iloc[row_index,col_index]
+        #     )
     G_bestPath.add_weighted_edges_from(listOfEdges)
-    return nx.draw(G_bestPath, with_labels = True)
-    # nx.draw_networkx_edge_labels(G_bestPath, pos=nx.spring_layout(G_bestPath),
-    #                              edge_labels = d_edges_labels)
+    nx.draw(G_bestPath, node_color = listOfNodesColors, with_labels = True)
+    plt.show()
+    # nx.draw_networkx_edge_labels(G_bestPath, nx.spring_layout(G_bestPath, seed=3113794652),
+    #                               edge_labels = d_edges_labels)
 
 if __name__ == '__main__':
     df_price = pd.read_csv('prix.csv')
     df_price = df_price.fillna(0)
     startTime = time.time()
-    print('Couple meilleur chemin et prix: ', FindBestPathForPrice(df_price, 'Sete', 'Montgiscard'))
-    CreateGraphOfBestPathForPrice(df_price, 'Sete', 'Montgiscard')
+    print('Couple meilleur chemin et prix: ', FindBestPathForPrice(df_price,
+                                            'St-Jean-de-Vedas', 'Carcassonne est'))
+    CreateGraphOfBestPathForPrice(df_price, 'St-Jean-de-Vedas', 'Carcassonne est')
     runTime = time.time() - startTime
     roundRunTime = str(dt.timedelta(seconds=runTime))
-    print('Runtime = ', runTime, ' secondes = ', roundRunTime)
+    print("Le temps d'execution du programme vaut: ", runTime, ' secondes.\n cad '
+          , roundRunTime, " dans le format heures minutes secondes")
+    
     
