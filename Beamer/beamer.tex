@@ -23,10 +23,18 @@
 \subsection{Création de la base de données}
 
 \begin{frame}[fragile]{Création de la base de données}
-Pour le dataframe des distances : \newline
+Dataframe intermédiaire : \newline
 \begin{itemize}
-\item Création avec $\textbf{pandas}$ des dataframe en selectionnant uniquement les sorties d'autoroute concernées par le projet et en enlevant les portions gratuites
-\item Transformation s
+\item Pour créer le data nous avons utilisé $\textbf{pandas}$ pour sélectionner uniquement les sorties d'autoroute concernées par le projet et enlever les portions gratuites.  
+\item Nous avons utilisé $\textbf{pyproj}$ pour transformer les coordonnées L93 en WGS84. Nous avons donc obtenu à la suite un dataframe avec les noms des autoroutes, les noms des péages et les coordonnées GPS.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Création de la base de données}
+Dataframe des distances et des prix: \newline
+\begin{itemize}
+\item Nous avons utilisé $\textbf{requests}$ et $\textbf{json}$ pour faire des requêtes de distance entre chaque coordonnées du dataframe créé précédemment. Ces packages utilisent les données de $\textbf{openstreetmap}$.
+\item Nous avons simplement reporté le fichier que nous avions en fichier $\textit{.csv}$ pour l'utiliser avec $\textbf{pandas}$ et choisir les péages voulus. Puis nous avons renommé les colonnes pour être cohérent avec les autres dataframe.
 \end{itemize}
 \end{frame}
 
@@ -35,7 +43,7 @@ Pour le dataframe des distances : \newline
 
 \begin{frame}[fragile]{Présentation du package Coberny}
 \begin{block}{Installer Coberny}
-pip install "à compléter"
+pip install git+https://github.com/ABernard27/PROJET-groupe-3
 \end{block}
 Ce package permet de réaliser 3 actions primaires : \newline
 \begin{itemize}
@@ -46,11 +54,15 @@ Ce package permet de réaliser 3 actions primaires : \newline
 \end{frame}
 
 
+
 \section{Carte intéractive}
-\begin{frame}
-\begin{block}{Installation}
-blablablabla
-\end{block}
+\subsection{Création de la carte}
+
+\begin{frame}[fragile]{Création de la carte}
+\end{frame}
+
+\subsection{Utilisation}
+\begin{frame}[fragile]{Utilisation}
 \end{frame}
 
 
