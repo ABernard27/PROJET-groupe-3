@@ -21,3 +21,4 @@ Documentation des fonctions de Coberny
 
 .. toctree::
    usage/carte.rst
+   usage/distribution.rst
