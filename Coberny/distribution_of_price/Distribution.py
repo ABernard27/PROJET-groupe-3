@@ -20,9 +20,6 @@ class distribution(object):
          
 
     :returns: le Kernel Density Estimate (KDE) et le ....    
-    
-    .. autoclass:: distibution
-        :members: Graph
     """
     def __init__(self,Distance,Prix):
         self.Distance = Distance
