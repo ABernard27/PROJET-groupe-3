@@ -28,8 +28,8 @@ class distribution(object):
 
     def indice(l):
         ind = 0
-        for i in range(DISTANCE.shape[0]):
-            if (DISTANCE.columns[i+1] == l):
+        for i in range(distance.shape[0]):
+            if (distance.columns[i+1] == l):
                 return i 
             else: i = i + 1
     
@@ -52,8 +52,8 @@ class distribution(object):
 
             DISTKM = np.zeros(len(A)-1)
             for i in range(len(A)-1):
-                if(DISTANCE[A[i]][indice(A[i+1])] != 0):
-                    DISTKM[i] = (prix[A[i]][A[i+1]])/(DISTANCE[A[i]][indice(A[i+1])])
+                if(distance[A[i]][indice(A[i+1])] != 0):
+                    DISTKM[i] = (prix[A[i]][A[i+1]])/(distance[A[i]][indice(A[i+1])])
                 else: DISTKM[i] = 0  
             fig, ax = plt.subplots(1, 1, figsize=(5, 5))
             sns.kdeplot(y=DISTKM, bw_adjust=bw, shade=True, vertical=True, cut=0, ax=ax, color='orange')
@@ -80,9 +80,9 @@ class distribution(object):
 
             DISTKM = np.zeros(len(A)-1)
             for i in range(len(A)-1):
-                if(DISTANCE[A[i]][indice(A[i+1])] != 0):
-                    DISTKM[i] = (prix[A[i]][A[i+1]])/(DISTANCE[A[i]][indice(A[i+1])])
-                elif(DISTANCE[A[i]][indice(A[i+1])] == 0): 
+                if(distance[A[i]][indice(A[i+1])] != 0):
+                    DISTKM[i] = (prix[A[i]][A[i+1]])/(distance[A[i]][indice(A[i+1])])
+                elif(distance[A[i]][indice(A[i+1])] == 0): 
                     DISTKM[i] = 0 
             height = DISTKM
             width = 1
