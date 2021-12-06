@@ -27,14 +27,6 @@ class distribution(object):
         self.Distance = Distance
         self.Prix = Prix
 
-
-    def indice(l):
-        ind = 0
-        for i in range(self.Distance.shape[0]):
-            if (self.Distance.columns[i+1] == l):
-                return i 
-            else: i = i + 1
-    
     
     # Plot le KDE: la distribution
     def Graph(self):
@@ -54,8 +46,8 @@ class distribution(object):
 
             DISTKM = np.zeros(len(A)-1)
             for i in range(len(A)-1):
-                if(self.Distance[A[i]][indice(A[i+1])] != 0):
-                    DISTKM[i] = (self.Prix[A[i]][A[i+1]])/(self.Distance[A[i]][indice(A[i+1])])
+                if(self.Distance[A[i]][indice(A[i+1],self.Distance)] != 0):
+                    DISTKM[i] = (self.Prix[A[i]][A[i+1]])/(self.Distance[A[i]][indice(A[i+1],self.Distance)])
                 else: DISTKM[i] = 0  
             fig, ax = plt.subplots(1, 1, figsize=(5, 5))
             sns.kdeplot(y=DISTKM, bw_adjust=bw, shade=True, vertical=True, cut=0, ax=ax, color='orange')
@@ -81,9 +73,9 @@ class distribution(object):
 
             DISTKM = np.zeros(len(A)-1)
             for i in range(len(A)-1):
-                if(self.Distance[A[i]][indice(A[i+1])] != 0):
-                    DISTKM[i] = (self.Prix[A[i]][A[i+1]])/(self.Distance[A[i]][indice(A[i+1])])
-                elif(distance[A[i]][indice(A[i+1])] == 0): 
+                if(self.Distance[A[i]][indice(A[i+1],self.Distance)] != 0):
+                    DISTKM[i] = (self.Prix[A[i]][A[i+1]])/(self.Distance[A[i]][indice(A[i+1],self.Distance)])
+                elif(distance[A[i]][indice(A[i+1],self.Distance)] == 0): 
                     DISTKM[i] = 0 
             height = DISTKM
             width = 1
