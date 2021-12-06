@@ -75,7 +75,7 @@ class distribution(object):
             for i in range(len(A)-1):
                 if(self.Distance[A[i]][indice(A[i+1],self.Distance)] != 0):
                     DISTKM[i] = (self.Prix[A[i]][A[i+1]])/(self.Distance[A[i]][indice(A[i+1],self.Distance)])
-                elif(distance[A[i]][indice(A[i+1],self.Distance)] == 0): 
+                elif(self.Distance[A[i]][indice(A[i+1],self.Distance)] == 0): 
                     DISTKM[i] = 0 
             height = DISTKM
             width = 1
