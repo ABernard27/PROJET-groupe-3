@@ -11,4 +11,4 @@ Distribution
 ------------
 
 .. automodule:: Coberny.distribution_of_price.distribution
-   :members:
+   :members: 

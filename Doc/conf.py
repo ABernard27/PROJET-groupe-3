@@ -34,6 +34,7 @@ release = '2021, Anne Bernard, Fanny Chery, Olivier Côme'
 # ones.
 extensions = [
   'sphinx.ext.autodoc',
+  'sphinx.ext.viewcode'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
