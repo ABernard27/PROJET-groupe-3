@@ -37,7 +37,7 @@ class distribution(object):
 
             G = nx.Graph(self.Prix)
             G.add_nodes_from(self.Prix)
-            G = nx.Graph(incoming_graph_data=prix)
+            G = nx.Graph(incoming_graph_data=self.Prix)
             a = nx.minimum_spanning_tree(G, ignore_nan=True)
             # Graphe du chemin le plus court
             A = nx.shortest_path(a, Entrée, Sortie)
@@ -65,7 +65,7 @@ class distribution(object):
         def barplot(Entrée=villes, Sortie=villes):
             G = nx.Graph(self.Prix)
             G.add_nodes_from(self.Prix)
-            G = nx.Graph(incoming_graph_data=prix)
+            G = nx.Graph(incoming_graph_data=self.Prix)
             a = nx.minimum_spanning_tree(G, ignore_nan=True)
             # Graphe du chemin le plus court
             A = nx.shortest_path(a, Entrée , Sortie)
