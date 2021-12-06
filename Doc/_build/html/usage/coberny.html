@@ -1,78 +1,125 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="fr" >
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carte &mdash; Documentation Coberny 2021, Anne Bernard, Fanny Chery, Olivier Côme</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="" lang="" version="-//W3C//DTD XHTML 1.1//EN" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/translations.js"></script>
-    <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Recherche" href="../search.html" />
-    <link rel="next" title="Créer une clé API" href="openrouteservice.html" />
-    <link rel="prev" title="Comment installer Coberny" href="Installation.html" /> 
-</head>
+  <title>Documentation &mdash; Documentation Coberny 2021, Anne Bernard, Fanny Chery, Olivier Côme</title>
+  
 
-<body class="wy-body-for-nav"> 
+  
+
+  
+
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="../_static/css/pdj.css" type="text/css" />
+
+  
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../_static/css/pdj.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Recherche" href="../search.html"/>
+    <link rel="top" title="Documentation Coberny 2021, Anne Bernard, Fanny Chery, Olivier Côme" href="../index.html"/>
+        <link rel="prev" title="Créer une clé API" href="openrouteservice.html"/>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="cache-control" content="public" />
+    <meta name="robots" content="follow, all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Add jQuery library -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+  </head>
+
+  <body class="wy-body-for-nav" role="document">
+
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> Coberny
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Rechercher docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="fa fa-home"> Coberny </a>
+        <div role="search">
+	  <form id ="rtd-search-form" class="wy-form"
+		action="../search.html" method="get">
+	    <input type="text" name="q" placeholder="Search docs" />
+	    <input type="hidden" name="check_keywords" value="yes" />
+	    <input type="hidden" name="area" value="default" />
+	  </form>
+	</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	
+          
+          
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="Installation.html">Comment installer Coberny</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Carte</a></li>
 <li class="toctree-l1"><a class="reference internal" href="openrouteservice.html">Créer une clé API</a></li>
 </ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-Coberny.map.Carte">Carte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-Coberny.distribution_of_price.distribution">Distribution</a></li>
+</ul>
+</li>
+</ul>
 
-        </div>
+          
+        
+
       </div>
+      &nbsp;
     </nav>
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Coberny</a>
+      <nav class="wy-nav-top" id="barra-mobile" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="#">Porão do Juca</a>
       </nav>
 
       <div class="wy-nav-content">
+	<div class="fundo-claro">
+	</div>
+	<div class="fundo-escuro">
+	</div>
+
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Carte</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/usage/coberny.rst.txt" rel="nofollow"> Afficher la source de la page</a>
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  <section id="carte">
-<h1>Carte<a class="headerlink" href="#carte" title="Lien permanent vers ce titre"></a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="Coberny.carte">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">Coberny.</span></span><span class="sig-name descname"><span class="pre">carte</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Coord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Coberny.carte" title="Lien permanent vers cette définition"></a></dt>
+          <div role="navigation" aria-label="breadcrumbs navigation">
+	    
+	    <!-- <ul class="wy-breadcrumbs"> -->
+	    <!--   <li><a href="#">Docs</a> &raquo;</li> -->
+
+	    <!--   <li>Features</li> -->
+	    <!--   <li class="wy-breadcrumbs-aside"> -->
+
+	    <!-- 	<a href="_sources/index.txt" rel="nofollow"> View page source</a> -->
+
+	    <!--   </li> -->
+	    <!-- </ul> -->
+	    <!-- <hr/> -->
+	  </div>
+
+          <div role="main" class="">
+
+	    <div id="content" class="hfeed entry-container hentry">
+  <section id="documentation">
+<h1>Documentation<a class="headerlink" href="#documentation" title="Lien permanent vers ce titre">¶</a></h1>
+<section id="module-Coberny.map.Carte">
+<span id="carte"></span><h2>Carte<a class="headerlink" href="#module-Coberny.map.Carte" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="Coberny.map.Carte.carte">
+<span class="sig-prename descclassname"><span class="pre">Coberny.map.Carte.</span></span><span class="sig-name descname"><span class="pre">carte</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Coord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Coberny.map.Carte.carte" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Trace sur une carte la route passant par des points GPS données, sur l’autoroute. Donne également le nom du point, les temps de trajet et le nombre de kilomètres entre les portions. Ce programme utilise les données de <code class="docutils literal notranslate"><span class="pre">openstreetmap</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
@@ -96,36 +143,104 @@
 </dd></dl>
 
 </section>
+<section id="module-Coberny.distribution_of_price.distribution">
+<span id="distribution"></span><h2>Distribution<a class="headerlink" href="#module-Coberny.distribution_of_price.distribution" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="Coberny.distribution_of_price.distribution.distribution">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">Coberny.distribution_of_price.distribution.</span></span><span class="sig-name descname"><span class="pre">distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Prix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Coberny.distribution_of_price.distribution.distribution" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>blablablabalal</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Distance</strong> (<em>dataframe</em>) – Le dataframe des distances entre chaque sortie.</p></li>
+<li><p><strong>Prix</strong> (<em>dataframe</em>) – Le dataframe des prix entre chaque sortie.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<p>Les dataframes Distance et Prix doivent avoir le même nombre de lignes que de colonnes.
+Le nom des colonnes et des lignes du dataframe Prix doivent être les noms des villes.
+Les colonnes du dataframe Distance doivent être le nom des villes, et les lignes doivent être indicées de 0 à n-1, avec n qui est égale au nombre de villes du dataframe.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Le Kernel Density Estimate (KDE): l’estimation de la fonction de densité de la variable prix/kilomètre sur la portion d’autoroute entre l’entrée et la sortie choisies. Le bar plot des prix au kilomètre entre chaque portion de l’autoroute.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
 
 
-           </div>
-          </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
-        <a href="Installation.html" class="btn btn-neutral float-left" title="Comment installer Coberny" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
-        <a href="openrouteservice.html" class="btn btn-neutral float-right" title="Créer une clé API" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+	    </div>
+            <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="openrouteservice.html" class="btn btn-neutral" title="Créer une clé API"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Anne Bernard, Fanny Chery, Olivier Côme.</p>
+    <p>
+        &copy; Copyright 2021, Anne Bernard, Fanny Chery, Olivier Côme.
+    </p>
   </div>
 
-  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
-    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
-   
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/jucacrispim/sphinx_pdj_theme">theme</a> provided by <a href="http://poraodojuca.net">Porão do Juca</a>.
 
 </footer>
-        </div>
-      </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+	</div>
+	</div>
+	  
 
-</body>
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2021, Anne Bernard, Fanny Chery, Olivier Côme',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js">
+
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js">
+
+    </script>
+    <script type="text/javascript" src="../_static/underscore.js">
+
+    </script>
+    <script type="text/javascript" src="../_static/doctools.js">
+
+    </script>
+    <script type="text/javascript" src="../_static/translations.js">
+
+    </script>
+
+  
+
+   <script type="text/javascript"
+           src="../_static/js/theme.js"></script>
+
+   <script type="text/javascript"
+           src="../_static/js/pdj.js"></script>
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+  </body>
 </html>
