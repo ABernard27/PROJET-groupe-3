@@ -16,10 +16,12 @@ class distribution(object):
     .. warning:: 
     
         Les dataframes Distance et Prix doivent avoir le même nombre de lignes que de colonnes.
-        Le nom des colonnes du dataframe Prix doivent être le nom des villes.
-         
+        Le nom des colonnes et des lignes du dataframe Prix doivent être le nom des villes.
+        Les colonnes du dataframe Distance doivent être le nom des villes, et les lignes doivent être indicées de 0 à n-1, avec n qui est égale au nombre de villes du dataframe.
 
-    :returns: le Kernel Density Estimate (KDE) et le ....    
+    :returns: Le Kernel Density Estimate (KDE): l'estimation de la fonction de densité de la variable prix/kilomètre sur la portion d'autoroute entre l'entrée et la sortie choisies.
+    Le bar plot des prix au kilomètre entre chaque portion de l'autoroute. 
+    
     """
     def __init__(self,Distance,Prix):
         self.Distance = Distance
@@ -28,21 +30,21 @@ class distribution(object):
 
     def indice(l):
         ind = 0
-        for i in range(distance.shape[0]):
-            if (distance.columns[i+1] == l):
+        for i in range(self.Distance.shape[0]):
+            if (self.Distance.columns[i+1] == l):
                 return i 
             else: i = i + 1
     
     
     # Plot le KDE: la distribution
     def Graph(self):
-        villes = sorted(prix.columns.unique())
+        villes = sorted(self.Prix.columns.unique())
         start4 = time.time()
 
         def kde_explore(bw=0.2, Entrée=villes, Sortie=villes):
 
-            G = nx.Graph(prix)
-            G.add_nodes_from(prix)
+            G = nx.Graph(self.Prix)
+            G.add_nodes_from(self.Prix)
             G = nx.Graph(incoming_graph_data=prix)
             a = nx.minimum_spanning_tree(G, ignore_nan=True)
             # Graphe du chemin le plus court
@@ -52,14 +54,14 @@ class distribution(object):
 
             DISTKM = np.zeros(len(A)-1)
             for i in range(len(A)-1):
-                if(distance[A[i]][indice(A[i+1])] != 0):
-                    DISTKM[i] = (prix[A[i]][A[i+1]])/(distance[A[i]][indice(A[i+1])])
+                if(self.Distance[A[i]][indice(A[i+1])] != 0):
+                    DISTKM[i] = (self.Prix[A[i]][A[i+1]])/(self.Distance[A[i]][indice(A[i+1])])
                 else: DISTKM[i] = 0  
             fig, ax = plt.subplots(1, 1, figsize=(5, 5))
             sns.kdeplot(y=DISTKM, bw_adjust=bw, shade=True, vertical=True, cut=0, ax=ax, color='orange')
             plt.xlabel('Trajet')
             plt.ylabel('Prix au kilomètre')
-            plt.title("Distribution des prix ")
+            plt.title("Distribution des prix")
             plt.tight_layout()
             plt.show()
    
@@ -69,19 +71,18 @@ class distribution(object):
 
 
         def barplot(Entrée=villes, Sortie=villes):
-            G = nx.Graph(prix)
-            G.add_nodes_from(prix)
+            G = nx.Graph(self.Prix)
+            G.add_nodes_from(self.Prix)
             G = nx.Graph(incoming_graph_data=prix)
             a = nx.minimum_spanning_tree(G, ignore_nan=True)
             # Graphe du chemin le plus court
-            # A=nx.shortest_path(a,prix.columns[np.random.randint(0,len(prix.columns))] , prix.columns[np.random.randint(0,len(prix.columns))] )
             A = nx.shortest_path(a, Entrée , Sortie)
             B = nx.subgraph(a,A)
 
             DISTKM = np.zeros(len(A)-1)
             for i in range(len(A)-1):
-                if(distance[A[i]][indice(A[i+1])] != 0):
-                    DISTKM[i] = (prix[A[i]][A[i+1]])/(distance[A[i]][indice(A[i+1])])
+                if(self.Distance[A[i]][indice(A[i+1])] != 0):
+                    DISTKM[i] = (self.Prix[A[i]][A[i+1]])/(self.Distance[A[i]][indice(A[i+1])])
                 elif(distance[A[i]][indice(A[i+1])] == 0): 
                     DISTKM[i] = 0 
             height = DISTKM
