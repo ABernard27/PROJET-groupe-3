@@ -6,6 +6,7 @@ import networkx as nx
 import seaborn as sns
 import time
 from ipywidgets import interact
+from Coberny.io import indice
 
 
 class distribution(object):
