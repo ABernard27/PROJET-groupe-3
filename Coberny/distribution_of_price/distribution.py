@@ -6,7 +6,7 @@ import networkx as nx
 import seaborn as sns
 import time
 from ipywidgets import interact
-from Coberny.io import indice
+import Coberny as cyb
 
 
 class distribution(object):
@@ -46,8 +46,8 @@ class distribution(object):
 
             DISTKM = np.zeros(len(A)-1)
             for i in range(len(A)-1):
-                if(self.Distance[A[i]][indice(A[i+1],self.Distance)] != 0):
-                    DISTKM[i] = (self.Prix[A[i]][A[i+1]])/(self.Distance[A[i]][indice(A[i+1],self.Distance)])
+                if(self.Distance[A[i]][cyb.indice(A[i+1],self.Distance)] != 0):
+                    DISTKM[i] = (self.Prix[A[i]][A[i+1]])/(self.Distance[A[i]][cyb.indice(A[i+1],self.Distance)])
                 else: DISTKM[i] = 0  
             fig, ax = plt.subplots(1, 1, figsize=(5, 5))
             sns.kdeplot(y=DISTKM, bw_adjust=bw, shade=True, vertical=True, cut=0, ax=ax, color='orange')
@@ -73,9 +73,9 @@ class distribution(object):
 
             DISTKM = np.zeros(len(A)-1)
             for i in range(len(A)-1):
-                if(self.Distance[A[i]][indice(A[i+1],self.Distance)] != 0):
-                    DISTKM[i] = (self.Prix[A[i]][A[i+1]])/(self.Distance[A[i]][indice(A[i+1],self.Distance)])
-                elif(self.Distance[A[i]][indice(A[i+1],self.Distance)] == 0): 
+                if(self.Distance[A[i]][cyb.indice(A[i+1],self.Distance)] != 0):
+                    DISTKM[i] = (self.Prix[A[i]][A[i+1]])/(self.Distance[A[i]][cyb.indice(A[i+1],self.Distance)])
+                elif(self.Distance[A[i]][cyb.indice(A[i+1],self.Distance)] == 0): 
                     DISTKM[i] = 0 
             height = DISTKM
             width = 1
