@@ -10,6 +10,7 @@ from ipywidgets import interact
 
 class distribution(object):
     """
+    
     :param dataframe Distance: Le dataframe des distances entre chaque sortie.
     :param dataframe Prix: Le dataframe des prix entre chaque sortie.
     
