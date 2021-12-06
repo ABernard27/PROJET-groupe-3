@@ -13,8 +13,7 @@ import time
 import datetime as dt
 import matplotlib.pyplot as plt
 
-df_price = pd.read_csv('prix.csv')
-df_price = df_price.fillna(0)
+
 # Retourne la liste de toutes les villes du dataframe
 def GetListOfcolnames(data):
     listofColnames = list(data.columns)[1:]
@@ -73,9 +72,9 @@ def CreateGraphOfPath(data, entrance, outlet, nbr_exit):
         for tup in listOfPath:
             for elt in range(len(tup) - 1):
                 row_index = int(data[data[cities] == tup[elt]].index[0])
-                col_index = df_price.columns.get_loc(tup[elt+1])
+                col_index = data.columns.get_loc(tup[elt+1])
                 listOfEdges.append(
-                    (tup[elt], tup[elt + 1], df_price.iloc[row_index,col_index])
+                    (tup[elt], tup[elt + 1], data.iloc[row_index,col_index])
                     )
         G_nbr_exit.add_weighted_edges_from(listOfEdges)
     return G_nbr_exit
@@ -94,64 +93,101 @@ def ShortestPathWeight(G, entrance, outlet):
         w += d['weight']
     return w
 
+# Cette fonction calcule la somme totale des poids du chemin
+def weight(data, n_uplet):
+        cities = data.columns[0]
+        listOfWeights = []
+        for i in range(len(n_uplet) - 1):
+            row_index = int(data[data[cities] == n_uplet[i]].index[0])
+            col_index = data.columns.get_loc(n_uplet[i+1])
+            w = df_price.iloc[row_index, col_index]
+            listOfWeights.append(w)
+        return sum(listOfWeights)
+
+# Cette fonction retourne le chemin optimal dans un n-uplet    
+def FindBestPathForPriceV2(data, listOfTuple):
+    tupWeights = []
+    for tup in listOfTuple:
+        tp_w = weight(data, tup)
+        tupWeights.append(tp_w)
+    min_w = min(tupWeights)
+    min_w_index = tupWeights.index(min_w)
+    bestPathForPrice = listOfTuple[min_w_index]
+    return bestPathForPrice
+
 # Retourne le couple composé du chemin optimal et du prix final (minimal)
-# que l'on va payer en empruntant ce chemin
-def FindBestPathForPrice(data, entrance, outlet):
-    K = GetKMaxConstraint(data, entrance, outlet)
-    listOfSP = []
-    listOfSPWeight = []
-    for i in range(K+1):
-        G = CreateGraphOfPath(data, entrance, outlet, i)
-        listOfSP.append(FindShortestPath(G, entrance, outlet))
-        listOfSPWeight.append(ShortestPathWeight(G, entrance, outlet))
-    best_price = min(listOfSPWeight)
-    best_price_index = listOfSPWeight.index(best_price)
-    bestPathForPrice = listOfSP[best_price_index]
-    return (bestPathForPrice, best_price)
+# que l'on va payer en empruntant ce cheminpour aller de la ville de 
+# départ à celle d'arrivée
+def FindBestPathForPrice(data, entrance, outlet, k):
+    if k > GetKMaxConstraint(data, entrance, outlet):
+        ans = 'La contrainte k est supérieure au nombre maximal de sorties possibles'
+        return ans
+    else:
+        listOfSP = []
+        listOfSPWeight = []
+        for i in range(k+1):
+            G = CreateGraphOfPath(data, entrance, outlet, i)
+            listOfSP.append(FindShortestPath(G, entrance, outlet))
+            listOfSPWeight.append(ShortestPathWeight(G, entrance, outlet))
+        best_price = min(listOfSPWeight)
+        best_price_index = listOfSPWeight.index(best_price)
+        bestPathForPrice = listOfSP[best_price_index]
+        if len(bestPathForPrice) <= 2+k:
+            return (bestPathForPrice, best_price)
+        else:
+            listOfTuple = GetListOfPath(data, entrance, outlet, k)
+            bestTupleForPrice = FindBestPathForPriceV2(data, listOfTuple)
+            best_price = weight(data, bestTupleForPrice)
+            bestPathForPrice = list(bestTupleForPrice)
+            return (bestPathForPrice, best_price)
 
 # Retourne le graph du chemin optimal ie le chemin qui revient le moins cher
 # entre la ville de départ et celle d'arrivée
 # Les sorties intermédiraires sont coloriées en orange
 # La ville de départ et d'arrivée sont coloriées en bleu
-def CreateGraphOfBestPathForPrice(data, entrance, outlet):
-    cities = data.columns[0]
-    listOfNodesColors = []
-    listOfEdges = []
-#    d_edges_labels = {}
-    G_bestPath = nx.DiGraph()
-    couple = FindBestPathForPrice(data, entrance, outlet)
-    bestPathForPrice = couple[0]
-    for node in bestPathForPrice:
-        if (node != entrance) and (node != outlet):
-            listOfNodesColors.append('tab:orange')
-        else:
-            listOfNodesColors.append('tab:blue')
-    G_bestPath.add_nodes_from(bestPathForPrice)
-    for vx in range(len(bestPathForPrice)-1):
-        row_index = int(data[data[cities] == bestPathForPrice[vx]].index[0])
-        col_index = df_price.columns.get_loc(bestPathForPrice[vx+1])
-        listOfEdges.append(
-            (bestPathForPrice[vx], bestPathForPrice[vx+1], data.iloc[row_index,col_index])
-            )
-        # d_edges_labels[(str(bestPathForPrice[vx]), str(bestPathForPrice[vx+1]))] = str(
-        #     data.iloc[row_index,col_index]
-        #     )
-    G_bestPath.add_weighted_edges_from(listOfEdges)
-    nx.draw(G_bestPath, node_color = listOfNodesColors, with_labels = True)
-    plt.show()
-    # nx.draw_networkx_edge_labels(G_bestPath, nx.spring_layout(G_bestPath, seed=3113794652),
-    #                               edge_labels = d_edges_labels)
+def CreateGraphOfBestPathForPrice(data, entrance, outlet, k):
+    if k > GetKMaxConstraint(data, entrance, outlet):
+        ans = 'La contrainte k est supérieure au nombre maximal de sorties possibles'
+        return ans
+    else:
+        cities = data.columns[0]
+        listOfNodesColors = []
+        listOfEdges = []
+    #    d_edges_labels = {}
+        G_bestPath = nx.DiGraph()
+        couple = FindBestPathForPrice(data, entrance, outlet, k)
+        bestPathForPrice = couple[0]
+        for node in bestPathForPrice:
+            if (node != entrance) and (node != outlet):
+                listOfNodesColors.append('tab:orange')
+            else:
+                listOfNodesColors.append('tab:blue')
+        G_bestPath.add_nodes_from(bestPathForPrice)
+        for vx in range(len(bestPathForPrice)-1):
+            row_index = int(data[data[cities] == bestPathForPrice[vx]].index[0])
+            col_index = data.columns.get_loc(bestPathForPrice[vx+1])
+            listOfEdges.append(
+                (bestPathForPrice[vx], bestPathForPrice[vx+1], data.iloc[row_index,col_index])
+                )
+            # d_edges_labels[(str(bestPathForPrice[vx]), str(bestPathForPrice[vx+1]))] = str(
+            #     data.iloc[row_index,col_index]
+            #     )
+        G_bestPath.add_weighted_edges_from(listOfEdges)
+        nx.draw(G_bestPath, node_color = listOfNodesColors, with_labels = True)
+        plt.show()
+        # nx.draw_networkx_edge_labels(G_bestPath, nx.spring_layout(G_bestPath, seed=3113794652),
+        #                               edge_labels = d_edges_labels)
+
 
 if __name__ == '__main__':
     df_price = pd.read_csv('prix.csv')
     df_price = df_price.fillna(0)
     startTime = time.time()
     print('Couple meilleur chemin et prix: ', FindBestPathForPrice(df_price,
-                                            'St-Jean-de-Vedas', 'Carcassonne est'))
-    CreateGraphOfBestPathForPrice(df_price, 'St-Jean-de-Vedas', 'Carcassonne est')
+                                            'Sete', 'Montgiscard', 5))
+    CreateGraphOfBestPathForPrice(df_price, 'Sete', 'Montgiscard', 5)
     runTime = time.time() - startTime
     roundRunTime = str(dt.timedelta(seconds=runTime))
     print("Le temps d'execution du programme vaut: ", runTime, ' secondes.\n cad '
           , roundRunTime, " dans le format heures minutes secondes")
-    
-    
+         
