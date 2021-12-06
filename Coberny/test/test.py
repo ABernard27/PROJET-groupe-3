@@ -7,11 +7,11 @@ import pandas as pd
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + (os.path.sep + '..')*2)
 
 import Coberny as cyb
-from Coberny.io import *
 download(url_dist, path_dist, replace=False)
 DISTANCE=pd.read_csv("Distance.csv", sep=',')
 
 def test_indice1():
+    
     assert indice('Sete', DISTANCE) == 1
 
 
