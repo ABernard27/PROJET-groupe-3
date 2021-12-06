@@ -16,7 +16,7 @@ class distribution(object):
     .. warning:: 
     
         Les dataframes Distance et Prix doivent avoir le même nombre de lignes que de colonnes.
-        Le nom des colonnes et des lignes du dataframe Prix doivent être le nom des villes.
+        Le nom des colonnes et des lignes du dataframe Prix doivent être les noms des villes.
         Les colonnes du dataframe Distance doivent être le nom des villes, et les lignes doivent être indicées de 0 à n-1, avec n qui est égale au nombre de villes du dataframe.
 
     :returns: Le Kernel Density Estimate (KDE): l'estimation de la fonction de densité de la variable prix/kilomètre sur la portion d'autoroute entre l'entrée et la sortie choisies.
