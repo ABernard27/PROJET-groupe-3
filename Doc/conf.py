@@ -17,6 +17,11 @@ import sphinx_pdj_theme
 html_theme = 'sphinx_pdj_theme'
 html_theme_path = [sphinx_pdj_theme.get_html_theme_path()]
 
+from sphinx.builders.html import StandaloneHTMLBuilder
+StandaloneHTMLBuilder.supported_image_types = ["image/png", "image/svg+xml",
+"image/gif", "image/jpeg"]
+
+
 # -- Project information -----------------------------------------------------
 
 project = 'Coberny'

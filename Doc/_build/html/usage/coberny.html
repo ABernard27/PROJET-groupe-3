@@ -69,7 +69,7 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-Coberny.map.Carte">Carte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#carte">Carte</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-Coberny.distribution_of_price.distribution">Distribution</a></li>
 </ul>
 </li>
@@ -115,9 +115,11 @@
 	    <div id="content" class="hfeed entry-container hentry">
   <section id="documentation">
 <h1>Documentation<a class="headerlink" href="#documentation" title="Lien permanent vers ce titre">¶</a></h1>
-<section id="module-Coberny.map.Carte">
-<span id="carte"></span><h2>Carte<a class="headerlink" href="#module-Coberny.map.Carte" title="Lien permanent vers ce titre">¶</a></h2>
-<dl class="py function">
+<p>Vous trouverez ici toute la documentation concernant le package <code class="docutils literal notranslate"><span class="pre">Coberny</span></code>. Tous les modules sont décrits et documenter pour permettre aux utilisateurs de mieux manier le package. Bonne lecture !</p>
+<section id="carte">
+<h2>Carte<a class="headerlink" href="#carte" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le module Carte permet de créer une carte enregistrée automatiquement sous format html, sur laquelle nous pouvons afficher les différentes gares de péage présentes dans le jeu de données. Il est possible de clique sur les gares pour voir les noms s’afficher et nous pouvons cliquer entre deux portions d’autoroute pour voir des données sur ce trajet.</p>
+<span class="target" id="module-Coberny.map.Carte"></span><dl class="py function">
 <dt class="sig sig-object py" id="Coberny.map.Carte.carte">
 <span class="sig-prename descclassname"><span class="pre">Coberny.map.Carte.</span></span><span class="sig-name descname"><span class="pre">carte</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Coord</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Coberny/map/Carte.html#carte"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Coberny.map.Carte.carte" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>Trace sur une carte la route passant par des points GPS données, sur l’autoroute. Donne également le nom du point, les temps de trajet et le nombre de kilomètres entre les portions. Ce programme utilise les données de <code class="docutils literal notranslate"><span class="pre">openstreetmap</span></code></p>
