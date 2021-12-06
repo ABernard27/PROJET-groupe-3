@@ -16,7 +16,7 @@ class distribution(object):
     .. warning:: 
     
         Les dataframes Distance et Prix doivent avoir le même nombre de lignes que de colonnes.
-        Le nom des colonnes et des lignes du dataframe Prix doivent être le nom des villes.
+        Le nom des colonnes et des lignes du dataframe Prix doivent être les noms des villes.
         Les colonnes du dataframe Distance doivent être le nom des villes, et les lignes doivent être indicées de 0 à n-1, avec n qui est égale au nombre de villes du dataframe.
 
     :returns: Le Kernel Density Estimate (KDE): l'estimation de la fonction de densité de la variable prix/kilomètre sur la portion d'autoroute entre l'entrée et la sortie choisies.
@@ -37,7 +37,7 @@ class distribution(object):
 
             G = nx.Graph(self.Prix)
             G.add_nodes_from(self.Prix)
-            G = nx.Graph(incoming_graph_data=prix)
+            G = nx.Graph(incoming_graph_data=self.Prix)
             a = nx.minimum_spanning_tree(G, ignore_nan=True)
             # Graphe du chemin le plus court
             A = nx.shortest_path(a, Entrée, Sortie)
@@ -65,7 +65,7 @@ class distribution(object):
         def barplot(Entrée=villes, Sortie=villes):
             G = nx.Graph(self.Prix)
             G.add_nodes_from(self.Prix)
-            G = nx.Graph(incoming_graph_data=prix)
+            G = nx.Graph(incoming_graph_data=self.Prix)
             a = nx.minimum_spanning_tree(G, ignore_nan=True)
             # Graphe du chemin le plus court
             A = nx.shortest_path(a, Entrée , Sortie)
@@ -75,7 +75,7 @@ class distribution(object):
             for i in range(len(A)-1):
                 if(self.Distance[A[i]][indice(A[i+1],self.Distance)] != 0):
                     DISTKM[i] = (self.Prix[A[i]][A[i+1]])/(self.Distance[A[i]][indice(A[i+1],self.Distance)])
-                elif(distance[A[i]][indice(A[i+1],self.Distance)] == 0): 
+                elif(self.Distance[A[i]][indice(A[i+1],self.Distance)] == 0): 
                     DISTKM[i] = 0 
             height = DISTKM
             width = 1
