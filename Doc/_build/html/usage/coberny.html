@@ -65,6 +65,7 @@
           
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="Installation.html">Comment installer Coberny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Packages.html">Liste des packages utiles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="openrouteservice.html">Créer une clé API</a></li>
 </ul>
 <ul class="current">
@@ -129,7 +130,7 @@
 <li><p><strong>Coord</strong> (<em>numpy.ndarray</em>) – Les coordonnées GPS en WSG84 : (longitude,latitude)</p></li>
 <li><p><strong>Name</strong> (<em>dataframe</em>) – Les noms des villes (ou autres) correspondant aux coordonnées (dans l’ordre)</p></li>
 <li><p><strong>prix</strong> (<em>dataframe</em>) – Les prix entre deux péages consécutifs</p></li>
-<li><p><strong>Key</strong> (<em>str</em>) – La clé API créée avec <em>openrouteservice</em></p></li>
+<li><p><strong>Key</strong> (<em>str</em>) – La clé API créée avec <code class="docutils literal notranslate"><span class="pre">openrouteservice</span></code> (qui est également un package qui doit être installé sur votre pc, la liste des packages est présente dans la rubrique <em>Packages</em>), la clé doit être entre guillemets simple “key”</p></li>
 </ul>
 </dd>
 </dl>
@@ -141,9 +142,18 @@
 <dt class="field-odd">Renvoie</dt>
 <dd class="field-odd"><p>La carte avec le tracé et les données sur le trajet</p>
 </dd>
+<dt class="field-even">Exemple</dt>
+<dd class="field-even"><p>Voici un exemple d’utilisation de cette fonction avec les datas présentées dans la rubrique <em>Données</em></p>
+</dd>
 </dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">Coberny</span> <span class="k">as</span> <span class="nn">cyb</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">cyb</span><span class="o">.</span><span class="n">carte</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]]),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39; Nom gare &#39;</span><span class="p">],</span> <span class="s1">&#39;5b3ce3597851110001cf6248dfd20bf8793e4e978b4bb0ca383bfd55&#39;</span><span class="p">,</span> <span class="n">prix</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
+<a class="reference internal image-reference" href="Users/LoRdi-Region/Desktop/FAC/Licence:Master/SEMESTRE7/712/PROJET-groupe-3/Doc/Images/exemple_carte.jpg"><img alt="Users/LoRdi-Region/Desktop/FAC/Licence:Master/SEMESTRE7/712/PROJET-groupe-3/Doc/Images/exemple_carte.jpg" src="Users/LoRdi-Region/Desktop/FAC/Licence:Master/SEMESTRE7/712/PROJET-groupe-3/Doc/Images/exemple_carte.jpg" style="width: 500px;" /></a>
 </section>
 <section id="module-Coberny.distribution_of_price.distribution">
 <span id="distribution"></span><h2>Distribution<a class="headerlink" href="#module-Coberny.distribution_of_price.distribution" title="Lien permanent vers ce titre">¶</a></h2>

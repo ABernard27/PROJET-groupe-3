@@ -14,6 +14,7 @@ Utilisez Coberny pour visualiser, optimiser et économiser votre temps et votre 
 
 .. toctree::
    usage/Installation.rst
+   usage/Packages.rst
    usage/openrouteservice.rst
 
 Documentation des fonctions de Coberny
@@ -21,3 +22,4 @@ Documentation des fonctions de Coberny
 
 .. toctree::
    usage/Coberny.rst
+
