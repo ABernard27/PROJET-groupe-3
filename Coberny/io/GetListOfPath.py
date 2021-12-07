@@ -1,4 +1,5 @@
 import Coberny as cyb
+import itertools
 
 def GetListOfPath(data, entrance, outlet, nbr_exit):
     listOfExit = cyb.GetListOfPossibleExit(data, entrance, outlet)
