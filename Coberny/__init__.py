@@ -1,4 +1,4 @@
-__version__ = '1.0.2'
+__version__ = '1.0.3'
 
 from .map.Carte import carte
 from .distribution_of_price.distribution import distribution
