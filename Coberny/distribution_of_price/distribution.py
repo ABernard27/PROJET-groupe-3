@@ -20,8 +20,7 @@ class distribution(object):
         Les dataframes Distance et Prix doivent avoir le même nombre de lignes que de colonnes.
         Le nom des colonnes et des lignes du dataframe Prix doivent être les noms des villes.
         Les colonnes du dataframe Distance doivent être le nom des villes, et les lignes doivent être indicées de 0 à n-1, avec n qui est égale au nombre de villes du dataframe.
-
-    :returns: Le Kernel Density Estimate (KDE): l'estimation de la fonction de densité de la variable prix/kilomètre sur la portion d'autoroute entre l'entrée et la sortie choisies. Le bar plot des prix au kilomètre entre chaque portion de l'autoroute. 
+ 
     """
     def __init__(self,Distance,Prix):
         self.Distance = Distance
@@ -30,6 +29,15 @@ class distribution(object):
     
     # Plot le KDE: la distribution
     def Graph(self):
+        """ Trace le graphe du Kernel Density Estimate (KDE): l'estimation de la fonction 
+            de densité de la variable prix/kilomètre sur la portion d'autoroute entre 
+            l'entrée et la sortie choisie.
+            Le bar plot des prix au kilomètre entre chaque portion de l'autoroute.
+
+        ..warning::
+            Il n'y a pas de paramètre à rentrer en entrée de la fonction Graph.
+
+        """
         villes = sorted(self.Prix.columns.unique())
         start4 = time.time()
 
