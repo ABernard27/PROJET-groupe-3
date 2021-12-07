@@ -11,8 +11,9 @@ Le module Carte permet de créer une carte enregistrée automatiquement sous for
 .. automodule:: Coberny.map.Carte
    :members:
 
-.. image:: /Users/LoRdi-Region/Desktop/FAC/Licence:Master/SEMESTRE 7/712/PROJET-groupe-3/Doc/Images/exemple_carte.jpg
+.. figure:: exemple_carte.jpg
    :width: 500
+   :align: center
 
 Distribution
 ------------
