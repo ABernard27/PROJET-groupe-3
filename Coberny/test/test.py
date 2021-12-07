@@ -9,18 +9,18 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) + (os.path.sep + '..'
 import Coberny as cyb
 
 def test_indice1():   
-    download(url_dist, path_dist, replace=False)
+    download(cyb.url_dist, cyb.path_dist, replace=False)
     DISTANCE=pd.read_csv("Distance.csv", sep=',')
     assert cyb.indice('Sete', DISTANCE) == 1
 
 
 def test_indice2():
-    download(url_dist, path_dist, replace=False)
+    download(cyb.url_dist, cyb.path_dist, replace=False)
     DISTANCE=pd.read_csv("Distance.csv", sep=',')
     assert cyb.indice('Castelnaudary', DISTANCE) == 17
 
 
 def test_indice3():
-    download(url_dist, path_dist, replace=False)
+    download(cyb.url_dist, cyb.path_dist, replace=False)
     DISTANCE=pd.read_csv("Distance.csv", sep=',')
     assert cyb.indice('Montgiscard', DISTANCE) == 22 
