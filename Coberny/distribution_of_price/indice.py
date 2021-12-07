@@ -1,3 +1,4 @@
+import Coberny as cyb
 def indice(l, DISTANCE):
     for i in range(DISTANCE.shape[0]):
         if (DISTANCE.columns[i+1] == l):
