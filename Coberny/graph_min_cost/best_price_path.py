@@ -119,6 +119,30 @@ def FindBestPathForPriceV2(data, listOfTuple):
 # que l'on va payer en empruntant ce cheminpour aller de la ville de 
 # départ à celle d'arrivée
 def FindBestPathForPrice(data, entrance, outlet, k):
+     """affiche la liste composé des sommets du chemin optimal 
+    (le chemin qui revient le moins cher entre la ville de départ et celle d'arrivée)
+     et le prix total (minimal) que
+    l'utilisateur va payer en empruntant ce chemin
+    
+    :param pandas.core.frame.DataFrame data: Le dataframe donnant le prix
+    du trajet direct entre 2 villes. Chaque case du dataframe correspond au prix que l'on va payer 
+    entre la ville associée à l'indice de la ligne et la ville associée à
+    l'indice de la colonne dans le dataframe.
+
+    ..warning::
+
+        Attention! le dataframe doit avoir un format adéquat pour que l'algorithme
+        fonctionne, une rubrique détaillant le format attendu pour le dataframe
+        est diposnible
+
+    :param str entrance: La ville de départ
+    :param str outlet: La ville de sortie
+    :param int k: Contrainte du nombre de sorties maximales imposées par l'utilisateur
+    
+    returns: Un couple. Le 1er element du couple est la liste des sommets du
+    chemin optimal. Le 2ème élément du couple est le prix total (minimal) que
+    l'utilisateur va payer en empruntant ce chemin'
+    """
     if k > GetKMaxConstraint(data, entrance, outlet):
         ans = 'La contrainte k est supérieure au nombre maximal de sorties possibles'
         return ans
@@ -146,6 +170,27 @@ def FindBestPathForPrice(data, entrance, outlet, k):
 # Les sorties intermédiraires sont coloriées en orange
 # La ville de départ et d'arrivée sont coloriées en bleu
 def CreateGraphOfBestPathForPrice(data, entrance, outlet, k):
+    """Trace le graph du chemin optimal ie le chemin qui revient le moins cher
+    entre la ville de départ et celle d'arrivée
+
+
+    :param pandas.core.frame.DataFrame data: Le dataframe donnant le prix
+    du trajet direct entre 2 villes. Chaque case du dataframe correspond au prix que l'on va payer 
+    entre la ville associée à l'indice de la ligne et la ville associée à
+    l'indice de la colonne dans le dataframe.
+
+    ..warning::
+
+        Attention! le dataframe doit avoir un format adéquat pour que l'algorithme
+        fonctionne, une rubrique détaillant le format attendu pour le dataframe
+        est diposnible
+
+    :param str entrance: La ville de départ
+    :param str outlet: La ville de sortie
+    :param int k: Contrainte du nombre de sorties maximales imposées par l'utilisateur
+
+    returns: Le graphe du chemin optimal entre la ville de départ et celle d'arrivée
+    """
     if k > GetKMaxConstraint(data, entrance, outlet):
         ans = 'La contrainte k est supérieure au nombre maximal de sorties possibles'
         return ans
