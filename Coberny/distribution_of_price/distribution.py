@@ -34,7 +34,7 @@ class distribution(object):
             l'entrée et la sortie choisie.
             Le bar plot des prix au kilomètre entre chaque portion de l'autoroute.
 
-        ..warning::
+        .. warning::
         
             Il n'y a pas de paramètre à rentrer en entrée de la fonction Graph.
             
