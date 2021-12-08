@@ -20,7 +20,11 @@ class distribution(object):
         Les dataframes Distance et Prix doivent avoir le même nombre de lignes que de colonnes.
         Le nom des colonnes et des lignes du dataframe Prix doivent être les noms des villes.
         Les colonnes du dataframe Distance doivent être le nom des villes, et les lignes doivent être indicées de 0 à n-1, avec n qui est égale au nombre de villes du dataframe.
- 
+    
+    .. code:: 
+    
+        distribution(DISTANCE, prix).Graph()
+        
     """
     def __init__(self,Distance,Prix):
         self.Distance = Distance
