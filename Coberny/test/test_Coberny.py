@@ -12,7 +12,7 @@ from Coberny.url import *
 def test_indice1():   
     download(url_dist, path_dist, replace=True)
     DISTANCE=pd.read_csv("Distance.csv", sep=',')
-    assert cyb.indice('SETE', DISTANCE) == 25
+    assert cyb.indice('AGDE', DISTANCE) == 24
 
 
 def test_indice2():
