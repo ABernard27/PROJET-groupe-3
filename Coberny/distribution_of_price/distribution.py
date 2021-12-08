@@ -37,6 +37,7 @@ class distribution(object):
         ..warning::
         
             Il n'y a pas de paramètre à rentrer en entrée de la fonction Graph.
+            
         .. code:: 
     
             distribution(DISTANCE, prix).Graph()
