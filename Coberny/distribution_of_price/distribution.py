@@ -38,9 +38,10 @@ class distribution(object):
         
             Il n'y a pas de paramètre à rentrer en entrée de la fonction Graph.
             
+       
         .. code:: 
     
-            distribution(DISTANCE, prix).Graph()
+            Coberny.distribution(DISTANCE, prix).Graph()
         
         """
         villes = sorted(self.Prix.columns.unique())
