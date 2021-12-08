@@ -29,10 +29,7 @@ class distribution(object):
     
     # Plot le KDE: la distribution
     def Graph(self):
-        """ Trace le graphe du Kernel Density Estimate (KDE): l'estimation de la fonction 
-            de densité de la variable prix/kilomètre sur la portion d'autoroute entre 
-            l'entrée et la sortie choisie.
-            Le bar plot des prix au kilomètre entre chaque portion de l'autoroute.
+        """ Trace le graphe du Kernel Density Estimate (KDE): l'estimation de la fonction de densité de la variable prix/kilomètre sur la portion d'autoroute entre l'entrée et la sortie choisie. Le bar plot des prix au kilomètre entre chaque portion de l'autoroute.
 
         .. warning::
         
