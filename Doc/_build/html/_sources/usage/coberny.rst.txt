@@ -27,5 +27,15 @@ Distribution
 
 .. automodule:: Coberny.distribution_of_price.distribution
    :members: 
+   
+Si nous exécutons ce code, nous obtenons :
 
+.. figure:: plot1.png
+   :align: center
+
+.. figure:: plot2.png
+   :align: center
+
+.. figure:: plot3.png
+   :align: center   
 

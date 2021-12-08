@@ -130,7 +130,7 @@
 <li><p><strong>Coord</strong> (<em>numpy.ndarray</em>) – Les coordonnées GPS en WSG84 : (longitude,latitude)</p></li>
 <li><p><strong>Name</strong> (<em>dataframe</em>) – Les noms des villes (ou autres) correspondant aux coordonnées (dans l’ordre)</p></li>
 <li><p><strong>prix</strong> (<em>dataframe</em>) – Les prix entre deux péages consécutifs</p></li>
-<li><p><strong>Key</strong> (<em>str</em>) – La clé API créée avec <code class="docutils literal notranslate"><span class="pre">openrouteservice</span></code> (qui est également un package qui doit être installé sur votre pc, la liste des packages est présente dans la rubrique <em>Packages</em>), la clé doit être entre guillemets simple “key”</p></li>
+<li><p><strong>Key</strong> (<em>str</em>) – La clé API créée avec <em>openrouteservice</em></p></li>
 </ul>
 </dd>
 </dl>
@@ -142,15 +142,7 @@
 <dt class="field-odd">Renvoie</dt>
 <dd class="field-odd"><p>La carte avec le tracé et les données sur le trajet</p>
 </dd>
-<dt class="field-even">Exemple</dt>
-<dd class="field-even"><p>Voici un exemple d’utilisation de cette fonction avec les datas présentées dans la rubrique <em>Données</em></p>
-</dd>
 </dl>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">Coberny</span> <span class="k">as</span> <span class="nn">cyb</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">cyb</span><span class="o">.</span><span class="n">carte</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]]),</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39; Nom gare &#39;</span><span class="p">],</span> <span class="s1">&#39;5b3ce3597851110001cf6248dfd20bf8793e4e978b4bb0ca383bfd55&#39;</span><span class="p">,</span> <span class="n">prix</span><span class="p">)</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <p>Après avoir exécuté ce code nous obtenons la carte suivante :</p>
@@ -177,13 +169,36 @@
 Le nom des colonnes et des lignes du dataframe Prix doivent être les noms des villes.
 Les colonnes du dataframe Distance doivent être le nom des villes, et les lignes doivent être indicées de 0 à n-1, avec n qui est égale au nombre de villes du dataframe.</p>
 </div>
-<dl class="field-list simple">
-<dt class="field-odd">Renvoie</dt>
-<dd class="field-odd"><p>Le Kernel Density Estimate (KDE): l’estimation de la fonction de densité de la variable prix/kilomètre sur la portion d’autoroute entre l’entrée et la sortie choisies. Le bar plot des prix au kilomètre entre chaque portion de l’autoroute.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="Coberny.distribution_of_price.distribution.distribution.Graph">
+<span class="sig-name descname"><span class="pre">Graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Coberny/distribution_of_price/distribution.html#distribution.Graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Coberny.distribution_of_price.distribution.distribution.Graph" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Trace le graphe du Kernel Density Estimate (KDE): l’estimation de la fonction </dt><dd><p>de densité de la variable prix/kilomètre sur la portion d’autoroute entre 
+l’entrée et la sortie choisie.
+Le bar plot des prix au kilomètre entre chaque portion de l’autoroute.</p>
 </dd>
 </dl>
+<p>..warning:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Il</span> <span class="n">n</span><span class="s1">&#39;y a pas de paramètre à rentrer en entrée de la fonction Graph.</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">distribution</span><span class="p">(</span><span class="n">DISTANCE</span><span class="p">,</span> <span class="n">prix</span><span class="p">)</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+</pre></div>
+</div>
 </dd></dl>
 
+</dd></dl>
+
+<p>Si nous exécutons ce code, nous obtenons :</p>
+<figure class="align-center">
+<img alt="usage/plot1.png" src="usage/plot1.png" />
+</figure>
+<figure class="align-center">
+<img alt="usage/plot2.png" src="usage/plot2.png" />
+</figure>
+<figure class="align-center">
+<img alt="usage/plot3.png" src="usage/plot3.png" />
+</figure>
 </section>
 </section>
 
