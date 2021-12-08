@@ -39,6 +39,7 @@ class distribution(object):
             Le bar plot des prix au kilomètre entre chaque portion de l'autoroute.
 
         ..warning::
+        
             Il n'y a pas de paramètre à rentrer en entrée de la fonction Graph.
 
         """
