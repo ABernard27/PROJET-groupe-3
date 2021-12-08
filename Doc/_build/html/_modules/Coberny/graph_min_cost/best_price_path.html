@@ -1,0 +1,404 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="" lang="" version="-//W3C//DTD XHTML 1.1//EN" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <title>Coberny.graph_min_cost.best_price_path &mdash; Documentation Coberny 2021, Anne Bernard, Fanny Chery, Olivier Côme</title>
+  
+
+  
+
+  
+
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="../../../_static/css/pdj.css" type="text/css" />
+
+  
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../../_static/css/pdj.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Recherche" href="../../../search.html"/>
+    <link rel="top" title="Documentation Coberny 2021, Anne Bernard, Fanny Chery, Olivier Côme" href="../../../index.html"/>
+        <link rel="up" title="Code du module" href="../../index.html"/>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="cache-control" content="public" />
+    <meta name="robots" content="follow, all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Add jQuery library -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+  </head>
+
+  <body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../../../index.html" class="fa fa-home"> Coberny </a>
+        <div role="search">
+	  <form id ="rtd-search-form" class="wy-form"
+		action="../../../search.html" method="get">
+	    <input type="text" name="q" placeholder="Search docs" />
+	    <input type="hidden" name="check_keywords" value="yes" />
+	    <input type="hidden" name="area" value="default" />
+	  </form>
+	</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/Installation.html">Comment installer Coberny</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/donnees.html">Données à titre d’exemple</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../usage/donnees.html#un-extrait-du-tableau-des-distances">Un extrait du tableau des distances</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../usage/donnees.html#un-extrait-du-tableau-des-prix">Un extrait du tableau des prix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/Packages.html">Liste des packages utiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/openrouteservice.html">Créer une clé API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/Coberny.html">Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../usage/Coberny.html#carte">Carte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../usage/Coberny.html#module-Coberny.distribution_of_price.distribution">Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../usage/Coberny.html#module-Coberny.graph_min_cost.best_price_path">Graph et minimisation du coût</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+
+      </div>
+      &nbsp;
+    </nav>
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      <nav class="wy-nav-top" id="barra-mobile" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="#">Porão do Juca</a>
+      </nav>
+
+      <div class="wy-nav-content">
+	<div class="fundo-claro">
+	</div>
+	<div class="fundo-escuro">
+	</div>
+
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+	    
+	    <!-- <ul class="wy-breadcrumbs"> -->
+	    <!--   <li><a href="#">Docs</a> &raquo;</li> -->
+
+	    <!--   <li>Features</li> -->
+	    <!--   <li class="wy-breadcrumbs-aside"> -->
+
+	    <!-- 	<a href="_sources/index.txt" rel="nofollow"> View page source</a> -->
+
+	    <!--   </li> -->
+	    <!-- </ul> -->
+	    <!-- <hr/> -->
+	  </div>
+
+          <div role="main" class="">
+
+	    <div id="content" class="hfeed entry-container hentry">
+  <h1>Code source de Coberny.graph_min_cost.best_price_path</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">from</span> <span class="nn">networkx.algorithms</span> <span class="kn">import</span> <span class="n">dijkstra_path</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="c1"># Retourne la liste de toutes les villes du dataframe</span>
+<span class="k">def</span> <span class="nf">GetListOfcolnames</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">listofColnames</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="k">return</span> <span class="n">listofColnames</span>
+
+<span class="c1"># Retourne la liste de tous les sommets des chemins possibles entre</span>
+<span class="c1"># la ville de départ (entrance) et la ville d&#39;arrivée (outlet)</span>
+<span class="k">def</span> <span class="nf">GetListOfVertexPath</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">):</span>
+    <span class="n">listofColnames</span> <span class="o">=</span> <span class="n">GetListOfcolnames</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">outlet_index</span> <span class="o">=</span> <span class="n">listofColnames</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">outlet</span><span class="p">)</span>
+    <span class="n">listOfVertexPath</span> <span class="o">=</span> <span class="n">listofColnames</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">outlet_index</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">listOfVertexPath</span>
+
+<span class="c1"># Retourne la liste de toutes les sorties possibles entre</span>
+<span class="c1"># la ville de départ (entrance) et la ville d&#39;arrivée (outlet)</span>
+<span class="k">def</span> <span class="nf">GetListOfPossibleExit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">):</span>
+    <span class="n">listOfVertexPath</span> <span class="o">=</span> <span class="n">GetListOfVertexPath</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">)</span>
+    <span class="n">listOfExit</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">listOfVertexPath</span> <span class="k">if</span> <span class="p">(</span><span class="n">e</span> <span class="o">!=</span> <span class="n">entrance</span> <span class="ow">and</span> <span class="n">e</span> <span class="o">!=</span> <span class="n">outlet</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">listOfExit</span>
+
+<span class="c1"># Retourne la contrainte K qui correspond au nombre total de sorties</span>
+<span class="c1"># qu&#39;on peut emprunter entre la ville de départ (entrance) et </span>
+<span class="c1"># la ville d&#39;arrivée (outlet)</span>
+<span class="k">def</span> <span class="nf">GetKMaxConstraint</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">):</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">GetListOfPossibleExit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">k</span>
+
+<span class="c1"># Retourne la liste de tous les chemins qu&#39;on peut emprunter en fonction</span>
+<span class="c1"># du nombre de sorties (nbr_exit) utilisé entre la ville de départ</span>
+<span class="c1"># et celle d&#39;arrivée</span>
+<span class="k">def</span> <span class="nf">GetListOfPath</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">,</span> <span class="n">nbr_exit</span><span class="p">):</span>
+    <span class="n">listOfExit</span> <span class="o">=</span> <span class="n">GetListOfPossibleExit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">)</span>
+    <span class="n">listOfPath</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">listOfExit</span><span class="p">,</span> <span class="n">nbr_exit</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">listOfPath</span><span class="p">)):</span>
+        <span class="n">listOfPath</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">entrance</span><span class="p">,)</span> <span class="o">+</span> <span class="n">listOfPath</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">outlet</span><span class="p">,)</span>
+    <span class="k">return</span> <span class="n">listOfPath</span>
+
+<span class="c1"># Création du graph représentant tous les itinéraires qu&#39;on peut </span>
+<span class="c1"># emprunter (entre la ville de départ et celle d&#39;arrivée)</span>
+<span class="c1"># en fonction du nombre de sorties (nbr_exit) utilisé </span>
+<span class="k">def</span> <span class="nf">CreateGraphOfPath</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">,</span> <span class="n">nbr_exit</span><span class="p">):</span>
+    <span class="n">G_nbr_exit</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+    <span class="n">cities</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">nbr_exit</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">G_nbr_exit</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">([</span><span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">])</span>
+        <span class="n">row_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">cities</span><span class="p">]</span> <span class="o">==</span> <span class="n">entrance</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">col_index</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">outlet</span><span class="p">)</span>
+        <span class="n">G_nbr_exit</span><span class="o">.</span><span class="n">add_weighted_edges_from</span><span class="p">(</span>
+            <span class="p">[(</span><span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">row_index</span><span class="p">,</span><span class="n">col_index</span><span class="p">])]</span>
+            <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">listOfVertexPath</span> <span class="o">=</span> <span class="n">GetListOfVertexPath</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">)</span>
+        <span class="n">G_nbr_exit</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">listOfVertexPath</span><span class="p">)</span>
+        <span class="n">listOfEdges</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">listOfPath</span> <span class="o">=</span> <span class="n">GetListOfPath</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">,</span> <span class="n">nbr_exit</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">tup</span> <span class="ow">in</span> <span class="n">listOfPath</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">row_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">cities</span><span class="p">]</span> <span class="o">==</span> <span class="n">tup</span><span class="p">[</span><span class="n">elt</span><span class="p">]]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">col_index</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">tup</span><span class="p">[</span><span class="n">elt</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">listOfEdges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="p">(</span><span class="n">tup</span><span class="p">[</span><span class="n">elt</span><span class="p">],</span> <span class="n">tup</span><span class="p">[</span><span class="n">elt</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">row_index</span><span class="p">,</span><span class="n">col_index</span><span class="p">])</span>
+                    <span class="p">)</span>
+        <span class="n">G_nbr_exit</span><span class="o">.</span><span class="n">add_weighted_edges_from</span><span class="p">(</span><span class="n">listOfEdges</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">G_nbr_exit</span>
+
+<span class="c1"># Retourne la liste des noeuds du plus court chemin trouvé dans le graph G</span>
+<span class="k">def</span> <span class="nf">FindShortestPath</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">):</span>
+    <span class="n">listOfSPNodes</span> <span class="o">=</span> <span class="n">dijkstra_path</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">listOfSPNodes</span>
+
+<span class="c1"># Retourne la somme des poids du plus court chemin</span>
+<span class="k">def</span> <span class="nf">ShortestPathWeight</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">):</span>
+    <span class="n">listOfSPNodes</span> <span class="o">=</span> <span class="n">FindShortestPath</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">listOfSPNodes</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">get_edge_data</span><span class="p">(</span><span class="n">listOfSPNodes</span><span class="p">[</span><span class="n">elt</span><span class="p">],</span> <span class="n">listOfSPNodes</span><span class="p">[</span><span class="n">elt</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">w</span> <span class="o">+=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">w</span>
+
+<span class="c1"># Cette fonction calcule la somme totale des poids du chemin</span>
+<span class="k">def</span> <span class="nf">weight</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n_uplet</span><span class="p">):</span>
+        <span class="n">cities</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">listOfWeights</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">n_uplet</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">row_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">cities</span><span class="p">]</span> <span class="o">==</span> <span class="n">n_uplet</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">col_index</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">n_uplet</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="n">df_price</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">row_index</span><span class="p">,</span> <span class="n">col_index</span><span class="p">]</span>
+            <span class="n">listOfWeights</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">listOfWeights</span><span class="p">)</span>
+
+<span class="c1"># Cette fonction retourne le chemin optimal dans un n-uplet    </span>
+<span class="k">def</span> <span class="nf">FindBestPathForPriceV2</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">listOfTuple</span><span class="p">):</span>
+    <span class="n">tupWeights</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">tup</span> <span class="ow">in</span> <span class="n">listOfTuple</span><span class="p">:</span>
+        <span class="n">tp_w</span> <span class="o">=</span> <span class="n">weight</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">tup</span><span class="p">)</span>
+        <span class="n">tupWeights</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tp_w</span><span class="p">)</span>
+    <span class="n">min_w</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">tupWeights</span><span class="p">)</span>
+    <span class="n">min_w_index</span> <span class="o">=</span> <span class="n">tupWeights</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">min_w</span><span class="p">)</span>
+    <span class="n">bestPathForPrice</span> <span class="o">=</span> <span class="n">listOfTuple</span><span class="p">[</span><span class="n">min_w_index</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">bestPathForPrice</span>
+
+<span class="c1"># Retourne le couple composé du chemin optimal et du prix final (minimal)</span>
+<span class="c1"># que l&#39;on va payer en empruntant ce cheminpour aller de la ville de </span>
+<span class="c1"># départ à celle d&#39;arrivée</span>
+
+<div class="viewcode-block" id="FindBestPathForPrice"><a class="viewcode-back" href="../../../usage/Coberny.html#Coberny.graph_min_cost.best_price_path.FindBestPathForPrice">[docs]</a><span class="k">def</span> <span class="nf">FindBestPathForPrice</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Affiche la liste composé des sommets du chemin optimal (le chemin qui revient le moins cher entre la ville de départ et celle d&#39;arrivée) et le prix total (minimal) que l&#39;utilisateur va payer en empruntant ce chemin.</span>
+<span class="sd">    </span>
+<span class="sd">    :param dataframe data: Le dataframe donnant le prix du trajet direct entre 2 villes. Chaque case du dataframe correspond au prix que l&#39;on va payer entre la ville associée à l&#39;indice de la ligne et la ville associée à l&#39;indice de la colonne dans le dataframe.</span>
+
+<span class="sd">    .. warning::</span>
+
+<span class="sd">        Attention! le dataframe doit avoir un format adéquat pour que l&#39;algorithme fonctionne, une rubrique détaillant le format attendu pour le dataframe est disponible</span>
+
+<span class="sd">    :param str entrance: La ville de départ</span>
+<span class="sd">    :param str outlet: La ville de sortie</span>
+<span class="sd">    :param int k: Contrainte du nombre de sorties maximales imposées par l&#39;utilisateur</span>
+<span class="sd">    </span>
+<span class="sd">    :returns: Un couple. Le 1er element du couple est la liste des sommets du chemin optimal. Le 2ème élément du couple est le prix total (minimal) que l&#39;utilisateur va payer en empruntant ce chemin.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="n">GetKMaxConstraint</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">):</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="s1">&#39;La contrainte k est supérieure au nombre maximal de sorties possibles&#39;</span>
+        <span class="k">return</span> <span class="n">ans</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">listOfSP</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">listOfSPWeight</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">G</span> <span class="o">=</span> <span class="n">CreateGraphOfPath</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">listOfSP</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">FindShortestPath</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">))</span>
+            <span class="n">listOfSPWeight</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ShortestPathWeight</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">))</span>
+        <span class="n">best_price</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">listOfSPWeight</span><span class="p">)</span>
+        <span class="n">best_price_index</span> <span class="o">=</span> <span class="n">listOfSPWeight</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">best_price</span><span class="p">)</span>
+        <span class="n">bestPathForPrice</span> <span class="o">=</span> <span class="n">listOfSP</span><span class="p">[</span><span class="n">best_price_index</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bestPathForPrice</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="o">+</span><span class="n">k</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">bestPathForPrice</span><span class="p">,</span> <span class="n">best_price</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">listOfTuple</span> <span class="o">=</span> <span class="n">GetListOfPath</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+            <span class="n">bestTupleForPrice</span> <span class="o">=</span> <span class="n">FindBestPathForPriceV2</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">listOfTuple</span><span class="p">)</span>
+            <span class="n">best_price</span> <span class="o">=</span> <span class="n">weight</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bestTupleForPrice</span><span class="p">)</span>
+            <span class="n">bestPathForPrice</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">bestTupleForPrice</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">bestPathForPrice</span><span class="p">,</span> <span class="n">best_price</span><span class="p">)</span></div>
+
+<span class="c1"># Retourne le graph du chemin optimal ie le chemin qui revient le moins cher</span>
+<span class="c1"># entre la ville de départ et celle d&#39;arrivée</span>
+<span class="c1"># Les sorties intermédiraires sont coloriées en orange</span>
+<span class="c1"># La ville de départ et d&#39;arrivée sont coloriées en bleu</span>
+<div class="viewcode-block" id="CreateGraphOfBestPathForPrice"><a class="viewcode-back" href="../../../usage/Coberny.html#Coberny.graph_min_cost.best_price_path.CreateGraphOfBestPathForPrice">[docs]</a><span class="k">def</span> <span class="nf">CreateGraphOfBestPathForPrice</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Trace le graph du chemin optimal ie le chemin qui revient le moins cher entre la ville de départ et celle d&#39;arrivée.</span>
+
+<span class="sd">    :param dataframe data: Le dataframe donnant le prix du trajet direct entre 2 villes. Chaque case du dataframe correspond au prix que l&#39;on va payer entre la ville associée à l&#39;indice de la ligne et la ville associée à l&#39;indice de la colonne dans le dataframe.</span>
+
+<span class="sd">    .. warning::</span>
+
+<span class="sd">        Attention! le dataframe doit avoir un format adéquat pour que l&#39;algorithme fonctionne, une rubrique détaillant le format attendu pour le dataframe est disponible.</span>
+
+<span class="sd">    :param str entrance: La ville de départ</span>
+<span class="sd">    :param str outlet: La ville de sortie</span>
+<span class="sd">    :param int k: Contrainte du nombre de sorties maximales imposées par l&#39;utilisateur</span>
+
+<span class="sd">    :returns: Le graphe du chemin optimal entre la ville de départ et celle d&#39;arrivée</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="n">GetKMaxConstraint</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">):</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="s1">&#39;La contrainte k est supérieure au nombre maximal de sorties possibles&#39;</span>
+        <span class="k">return</span> <span class="n">ans</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">cities</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">listOfNodesColors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">listOfEdges</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1">#    d_edges_labels = {}</span>
+        <span class="n">G_bestPath</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+        <span class="n">couple</span> <span class="o">=</span> <span class="n">FindBestPathForPrice</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">entrance</span><span class="p">,</span> <span class="n">outlet</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+        <span class="n">bestPathForPrice</span> <span class="o">=</span> <span class="n">couple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">bestPathForPrice</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">!=</span> <span class="n">entrance</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">node</span> <span class="o">!=</span> <span class="n">outlet</span><span class="p">):</span>
+                <span class="n">listOfNodesColors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;tab:orange&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">listOfNodesColors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">)</span>
+        <span class="n">G_bestPath</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">bestPathForPrice</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">vx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bestPathForPrice</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">row_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">cities</span><span class="p">]</span> <span class="o">==</span> <span class="n">bestPathForPrice</span><span class="p">[</span><span class="n">vx</span><span class="p">]]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">col_index</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">bestPathForPrice</span><span class="p">[</span><span class="n">vx</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">listOfEdges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">bestPathForPrice</span><span class="p">[</span><span class="n">vx</span><span class="p">],</span> <span class="n">bestPathForPrice</span><span class="p">[</span><span class="n">vx</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">row_index</span><span class="p">,</span><span class="n">col_index</span><span class="p">])</span>
+                <span class="p">)</span>
+            <span class="c1"># d_edges_labels[(str(bestPathForPrice[vx]), str(bestPathForPrice[vx+1]))] = str(</span>
+            <span class="c1">#     data.iloc[row_index,col_index]</span>
+            <span class="c1">#     )</span>
+        <span class="n">G_bestPath</span><span class="o">.</span><span class="n">add_weighted_edges_from</span><span class="p">(</span><span class="n">listOfEdges</span><span class="p">)</span>
+        <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G_bestPath</span><span class="p">,</span> <span class="n">node_color</span> <span class="o">=</span> <span class="n">listOfNodesColors</span><span class="p">,</span> <span class="n">with_labels</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+        <span class="c1"># nx.draw_networkx_edge_labels(G_bestPath, nx.spring_layout(G_bestPath, seed=3113794652),</span>
+        <span class="c1">#                               edge_labels = d_edges_labels)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">df_price</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;prix.csv&#39;</span><span class="p">)</span>
+    <span class="n">df_price</span> <span class="o">=</span> <span class="n">df_price</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">startTime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Couple meilleur chemin et prix: &#39;</span><span class="p">,</span> <span class="n">FindBestPathForPrice</span><span class="p">(</span><span class="n">df_price</span><span class="p">,</span>
+                                            <span class="s1">&#39;Sete&#39;</span><span class="p">,</span> <span class="s1">&#39;Montgiscard&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">CreateGraphOfBestPathForPrice</span><span class="p">(</span><span class="n">df_price</span><span class="p">,</span> <span class="s1">&#39;Sete&#39;</span><span class="p">,</span> <span class="s1">&#39;Montgiscard&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">runTime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">startTime</span>
+    <span class="n">roundRunTime</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">runTime</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Le temps d&#39;execution du programme vaut: &quot;</span><span class="p">,</span> <span class="n">runTime</span><span class="p">,</span> <span class="s1">&#39; secondes.</span><span class="se">\n</span><span class="s1"> cad &#39;</span>
+          <span class="p">,</span> <span class="n">roundRunTime</span><span class="p">,</span> <span class="s2">&quot; dans le format heures minutes secondes&quot;</span><span class="p">)</span>
+         
+</pre></div>
+
+	    </div>
+            <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, Anne Bernard, Fanny Chery, Olivier Côme.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/jucacrispim/sphinx_pdj_theme">theme</a> provided by <a href="http://poraodojuca.net">Porão do Juca</a>.
+
+</footer>
+	</div>
+	</div>
+	  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'2021, Anne Bernard, Fanny Chery, Olivier Côme',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+    <script type="text/javascript" src="../../../_static/documentation_options.js">
+
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js">
+
+    </script>
+    <script type="text/javascript" src="../../../_static/underscore.js">
+
+    </script>
+    <script type="text/javascript" src="../../../_static/doctools.js">
+
+    </script>
+    <script type="text/javascript" src="../../../_static/translations.js">
+
+    </script>
+
+  
+
+   <script type="text/javascript"
+           src="../../../_static/js/theme.js"></script>
+
+   <script type="text/javascript"
+           src="../../../_static/js/pdj.js"></script>
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+  </body>
+</html>

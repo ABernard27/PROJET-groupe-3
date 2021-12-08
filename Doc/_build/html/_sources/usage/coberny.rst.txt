@@ -14,13 +14,9 @@ Le module Carte permet de créer une carte enregistrée automatiquement sous for
 Après avoir exécuté ce code nous obtenons la carte suivante : 
 
 .. figure:: exemple_carte.jpg
-   :height: 300
    :width: 500
-   :scale: 100
    :align: center
-   :class: with-shadow
-   :alt: Carte
-
+   
 
 Distribution
 ------------
@@ -38,4 +34,11 @@ Si nous exécutons ce code, nous obtenons :
 
 .. figure:: plot3.png
    :align: center   
+
+Graph et minimisation du coût
+-----------------------------
+
+.. automodule:: Coberny.graph_min_cost.best_price_path
+   :members:
+
 
