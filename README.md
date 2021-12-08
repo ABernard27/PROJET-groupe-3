@@ -36,5 +36,5 @@ Suite à ces 3 axes majeurs nous créerons des fonctions test avec ```pytest``` 
 Le projet se partageant en 3 grosses phases de travail, nous aurons un objectif chacun. Bernard Anne s'occupera de créer la carte intéractive. Chery Fanny fera la partie sur la distribution des prix et Côme Olivier se chargera de la minimisation du coût du trajet. Il s'agit d'une répartition globale et non significative car il reste beaucoup d'autres parties du projet non expliquées ici, par exemple la documentation, sur lesquelles nous travaillerons tous. 
 
 <p align="center">
-  <img.srl='https://github.com/ABernard27/PROJET-groupe-3/blob/master/Document/Racoon.jpg' width=300 title='Racoon'>
+  <img.srl='https://github.com/ABernard27/PROJET-groupe-3.git' width=300 title='Racoon'>
 </p>
