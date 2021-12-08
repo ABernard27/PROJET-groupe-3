@@ -128,7 +128,7 @@
 <span class="sd">    :param numpy.ndarray Coord: Les coordonnées GPS en WSG84 : (longitude,latitude)</span>
 <span class="sd">    :param dataframe Name: Les noms des villes (ou autres) correspondant aux coordonnées (dans l&#39;ordre)</span>
 <span class="sd">    :param dataframe prix: Les prix entre deux péages consécutifs</span>
-<span class="sd">    :param str Key: La clé API créée avec ``openrouteservice`` (qui est également un package qui doit être installé sur votre pc, la liste des packages est présente dans la rubrique *Packages*), la clé doit être entre guillemets simple &#39;key&#39;</span>
+<span class="sd">    :param str Key: La clé API créée avec *openrouteservice*</span>
 
 <span class="sd">    .. warning:: </span>
 <span class="sd">        </span>
@@ -136,13 +136,11 @@
 <span class="sd">    </span>
 <span class="sd">    :returns: La carte avec le tracé et les données sur le trajet</span>
 <span class="sd">    </span>
-<span class="sd">    :exemple: Voici un exemple d&#39;utilisation de cette fonction avec les datas présentées dans la rubrique *Données*</span>
+<span class="sd">    :exemple: Voici un exemple de comment utiliser la fonction : </span>
 <span class="sd">    </span>
 <span class="sd">    .. code::</span>
 <span class="sd">    </span>
-<span class="sd">    	import Coberny as cyb</span>
-<span class="sd">	import numpy as np</span>
-<span class="sd">	cyb.carte(np.column_stack([data[&#39;x&#39;],data[&#39;y&#39;]]), data[&#39; Nom gare &#39;], &#39;5b3ce3597851110001cf6248dfd20bf8793e4e978b4bb0ca383bfd55&#39;, prix)</span>
+<span class="sd">    	Coberny.carte(np.column_stack([data[&#39;x&#39;],data[&#39;y&#39;]]), data[&#39; Nom gare&#39; ], &#39;5b3ce3597851110001cf6248dfd20bf8793e4e978b4bb0ca383bfd55&#39;, prix)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="n">client</span> <span class="o">=</span> <span class="n">openrouteservice</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">Key</span><span class="p">)</span>

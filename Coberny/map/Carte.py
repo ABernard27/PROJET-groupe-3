@@ -18,6 +18,12 @@ def carte(Coord, Name, Key, prix):
         Attention! La clé doit être créée par vos soins, une rubrique expliquant comment le faire est disponible. 
     
     :returns: La carte avec le tracé et les données sur le trajet
+    
+    :exemple: Voici un exemple de comment utiliser la fonction : 
+    
+    .. code::
+    
+    	Coberny.carte(np.column_stack([data['x'],data['y']]), data[' Nom gare' ], '5b3ce3597851110001cf6248dfd20bf8793e4e978b4bb0ca383bfd55', prix)
     """
     start = time.time()
     client = openrouteservice.Client(key=Key)
