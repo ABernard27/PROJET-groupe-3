@@ -4,4 +4,3 @@ def indice(l, DISTANCE):
         if (DISTANCE.columns[i+1] == l):
             return i 
         else: i = i + 1
-    return i
