@@ -21,10 +21,6 @@ class distribution(object):
         Le nom des colonnes et des lignes du dataframe Prix doivent être les noms des villes.
         Les colonnes du dataframe Distance doivent être le nom des villes, et les lignes doivent être indicées de 0 à n-1, avec n qui est égale au nombre de villes du dataframe.
     
-    .. code:: 
-    
-        distribution(DISTANCE, prix).Graph()
-        
     """
     def __init__(self,Distance,Prix):
         self.Distance = Distance
@@ -41,7 +37,10 @@ class distribution(object):
         ..warning::
         
             Il n'y a pas de paramètre à rentrer en entrée de la fonction Graph.
-
+        .. code:: 
+    
+            distribution(DISTANCE, prix).Graph()
+        
         """
         villes = sorted(self.Prix.columns.unique())
         start4 = time.time()
