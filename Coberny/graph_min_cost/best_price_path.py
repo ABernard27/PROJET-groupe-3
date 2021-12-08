@@ -118,10 +118,11 @@ def FindBestPathForPriceV2(data, listOfTuple):
 # Retourne le couple composé du chemin optimal et du prix final (minimal)
 # que l'on va payer en empruntant ce cheminpour aller de la ville de 
 # départ à celle d'arrivée
+
 def FindBestPathForPrice(data, entrance, outlet, k):
-     """affiche la liste composé des sommets du chemin optimal 
+    """affiche la liste composé des sommets du chemin optimal 
     (le chemin qui revient le moins cher entre la ville de départ et celle d'arrivée)
-     et le prix total (minimal) que
+    et le prix total (minimal) que
     l'utilisateur va payer en empruntant ce chemin
     
     :param pandas.core.frame.DataFrame data: Le dataframe donnant le prix
