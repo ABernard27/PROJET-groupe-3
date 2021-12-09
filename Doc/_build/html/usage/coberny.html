@@ -76,7 +76,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#carte">Carte</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-Coberny.distribution_of_price.distribution">Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#distribution">Distribution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-Coberny.graph_min_cost.best_price_path">Graph et minimisation du coût</a></li>
 </ul>
 </li>
@@ -163,12 +163,16 @@
 </figure>
 <p></p>
 </section>
-<section id="module-Coberny.distribution_of_price.distribution">
-<span id="distribution"></span><h2>Distribution<a class="headerlink" href="#module-Coberny.distribution_of_price.distribution" title="Lien permanent vers ce titre">¶</a></h2>
-<dl class="py class">
+<section id="distribution">
+<h2>Distribution<a class="headerlink" href="#distribution" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le module Distribution nous permet créer un Kernel Density Estimation (KDE)  qui est une méthode non-paramétrique d’estimation de la densité de probabilité d’une variable aléatoire.
+Ici, nous allons utiliser le prix au kilomètre comme variable aléatoire. Le KDE va être celui de l’estimation de la densité de la variable Prix/Kilomètre.n
+De plus, ce module nous permet de visualiser les prix au kilomètre sur chaque section de la portion d’autoroute souhaitée.</p>
+<span class="target" id="module-Coberny.distribution_of_price.distribution"></span><dl class="py class">
 <dt class="sig sig-object py" id="Coberny.distribution_of_price.distribution.distribution">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">Coberny.distribution_of_price.distribution.</span></span><span class="sig-name descname"><span class="pre">distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Prix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Coberny/distribution_of_price/distribution.html#distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Coberny.distribution_of_price.distribution.distribution" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Après excution du code, c’est dans votre fenêtre interactive que vous trouverez les widgets (les menus déroulants) qui vous permettront qui modifier l’entrée et la sortie à votre souhait.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Paramètres</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>Distance</strong> (<em>dataframe</em>) – Le dataframe des distances entre chaque sortie.</p></li>
