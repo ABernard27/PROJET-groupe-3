@@ -53,6 +53,10 @@ Le module Graph et minimisation permet de déterminer et de visualiser le trajet
 .. automodule:: Coberny.graph_min_cost.best_price_path
    :members:
    
+.. figure:: code.png
+   :width: 500
+   :align: center
+   
 Si nous exécutons ce code nous obtenons :
 
 .. figure:: graph2.png
