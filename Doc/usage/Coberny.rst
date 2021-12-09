@@ -74,6 +74,6 @@ Pour simplifier la prise en main de notre package, nous avons également crée u
    :width: 500
    :align: center
 
-Comme vous pouvez le voir sur l'image ci-dessus, ce dernier va pouvoir via l'utilisation de boutons et de widgets, charger son fichier de données, charger les villes de départs et en choisir une. Il va pouvoir ensuite choisir la ville d'arrivée tout en renseignant sur la contrainte du nombre de sorties maximales. Enfin, il pourra éxecuter l'algorithme et connaitre quel est le chemin optimal pour son trajet.
+Comme vous pouvez le voir sur l'image ci-dessus, ce dernier va pouvoir via l'utilisation de boutons et de widgets, charger son fichier de données, charger les villes de départs et en choisir une. Il va pouvoir ensuite choisir la ville d'arrivée tout en renseignant sur la contrainte du nombre de sorties maximales. Enfin, il pourra cliquer sur le bouton qui exécutera l'algorithme déterminant quel est le chemin optimal pour son trajet.
 
 \
