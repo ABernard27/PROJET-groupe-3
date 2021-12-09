@@ -93,7 +93,7 @@ def weight(data, n_uplet):
         for i in range(len(n_uplet) - 1):
             row_index = int(data[data[cities] == n_uplet[i]].index[0])
             col_index = data.columns.get_loc(n_uplet[i+1])
-            w = df_price.iloc[row_index, col_index]
+            w = data.iloc[row_index, col_index]
             listOfWeights.append(w)
         return sum(listOfWeights)
 
@@ -196,8 +196,8 @@ def CreateGraphOfBestPathForPrice(data, entrance, outlet, k):
             #     data.iloc[row_index,col_index]
             #     )
         G_bestPath.add_weighted_edges_from(listOfEdges)
-        nx.draw(G_bestPath, node_color = listOfNodesColors, with_labels = True)
-        plt.show()
+        return nx.draw(G_bestPath, node_color = listOfNodesColors, with_labels = True)
+        # plt.show()
         # nx.draw_networkx_edge_labels(G_bestPath, nx.spring_layout(G_bestPath, seed=3113794652),
         #                               edge_labels = d_edges_labels)
 
