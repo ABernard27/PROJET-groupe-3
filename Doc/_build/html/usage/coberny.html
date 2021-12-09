@@ -68,6 +68,7 @@
 <li class="toctree-l1"><a class="reference internal" href="donnees.html">Données à titre d’exemple</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="donnees.html#un-extrait-du-tableau-des-distances">Un extrait du tableau des distances</a></li>
 <li class="toctree-l2"><a class="reference internal" href="donnees.html#un-extrait-du-tableau-des-prix">Un extrait du tableau des prix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="donnees.html#un-extrait-du-graph-representant-le-chemin-optimal-celui-revenant-le-moins-cher-entre-sigean-ville-de-depart-et-nailloux-ville-d-arrivee">Un extrait du graph représentant le chemin optimal (celui revenant le moins cher) entre Sigean (ville de départ) et Nailloux (ville d’arrivée).</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Packages.html">Liste des packages utiles</a></li>
@@ -122,7 +123,12 @@
 	    <div id="content" class="hfeed entry-container hentry">
   <section id="documentation">
 <h1>Documentation<a class="headerlink" href="#documentation" title="Lien permanent vers ce titre">¶</a></h1>
-<p>Vous trouverez ici toute la documentation concernant le package <code class="docutils literal notranslate"><span class="pre">Coberny</span></code>. Tous les modules sont décrits et documenter pour permettre aux utilisateurs de mieux manier le package. Bonne lecture !</p>
+<p>Vous trouverez ici toute la documentation concernant le package <code class="docutils literal notranslate"><span class="pre">Coberny</span></code>. Tous les modules sont décrits et documenter pour permettre aux utilisateurs de mieux manier le package. Bonne lecture ! </p>
+<p>Voici un petit aperçu du rendu d’une des fonctions!!</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/carte.gif"><img alt="../_images/carte.gif" src="../_images/carte.gif" style="width: 400px;" /></a>
+</figure>
+<p></p>
 <section id="carte">
 <h2>Carte<a class="headerlink" href="#carte" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Le module Carte permet de créer une carte enregistrée automatiquement sous format html, sur laquelle nous pouvons afficher les différentes gares de péage présentes dans le jeu de données. Il est possible de clique sur les gares pour voir les noms s’afficher et nous pouvons cliquer entre deux portions d’autoroute pour voir des données sur ce trajet.</p>
@@ -165,9 +171,7 @@
 </section>
 <section id="distribution">
 <h2>Distribution<a class="headerlink" href="#distribution" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Le module Distribution nous permet créer un Kernel Density Estimation (KDE)  qui est une méthode non-paramétrique d’estimation de la densité de probabilité d’une variable aléatoire.
-Ici, nous allons utiliser le prix au kilomètre comme variable aléatoire. Le KDE va être celui de l’estimation de la densité de la variable Prix/Kilomètre.n
-De plus, ce module nous permet de visualiser les prix au kilomètre sur chaque section de la portion d’autoroute souhaitée.</p>
+<p>Le module Distribution nous permet créer un Kernel Density Estimation (KDE)  qui est une méthode non-paramétrique d’estimation de la densité de probabilité d’une variable aléatoire. Ici, nous allons utiliser le prix au kilomètre comme variable aléatoire. Le KDE va être celui de l’estimation de la densité de la variable Prix/Kilomètre. De plus, ce module nous permet de visualiser les prix au kilomètre sur chaque section de la portion d’autoroute souhaitée.</p>
 <span class="target" id="module-Coberny.distribution_of_price.distribution"></span><dl class="py class">
 <dt class="sig sig-object py" id="Coberny.distribution_of_price.distribution.distribution">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">Coberny.distribution_of_price.distribution.</span></span><span class="sig-name descname"><span class="pre">distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Prix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/Coberny/distribution_of_price/distribution.html#distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#Coberny.distribution_of_price.distribution.distribution" title="Lien permanent vers cette définition">¶</a></dt>

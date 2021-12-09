@@ -1,7 +1,14 @@
 Documentation
 =============
-Vous trouverez ici toute la documentation concernant le package ``Coberny``. Tous les modules sont décrits et documenter pour permettre aux utilisateurs de mieux manier le package. Bonne lecture ! 
+Vous trouverez ici toute la documentation concernant le package ``Coberny``. Tous les modules sont décrits et documenter pour permettre aux utilisateurs de mieux manier le package. Bonne lecture ! \
 
+Voici un petit aperçu du rendu d'une des fonctions!!
+
+.. figure:: carte.gif
+   :align: center
+   :width: 400
+
+\ 
 
 Carte
 -----
