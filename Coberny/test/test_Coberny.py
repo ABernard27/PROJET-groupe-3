@@ -27,20 +27,19 @@ def test_indice3():
     assert cyb.indice('MONTGISCARD', DISTANCE) == 21 
 
 
-df_price = pd.read_csv('prix.csv')
-df_price = df_price.fillna(0)
-
-
 def KMaxConstraint():
-    assert GetKMaxConstraint(df_price, 'Sete', 'Narbonne est ') == 4
+    download(url_prix , path_prix , replace=True)
+    assert cyb.GetKMaxConstraint(df_price, 'Sete', 'Narbonne est ') == 4
 
 def cheaperPath():
-    couple = FindBestPathForPrice(df_price, 'St-Jean-de-Vedas', 'Montgiscard', 3)
+    download(url_prix , path_prix , replace=True)
+    couple = cyb.FindBestPathForPrice(df_price, 'St-Jean-de-Vedas', 'Montgiscard', 3)
     cheaper_path = couple[0]
     assert cheaper_path == ['St-Jean-de-Vedas', 'Sete', 'Agde Pezenas', 'Narbonne sud',
                             'Montgiscard']
     
 def PricecheaperPath():
-    couple = FindBestPathForPrice(df_price, 'St-Jean-de-Vedas', 'Bram', 3)
+    download(url_prix , path_prix , replace=True)
+    couple = cyb.FindBestPathForPrice(df_price, 'St-Jean-de-Vedas', 'Bram', 3)
     PriceOfCheaperPath = couple[1]
     assert PriceOfCheaperPath == 14.7
