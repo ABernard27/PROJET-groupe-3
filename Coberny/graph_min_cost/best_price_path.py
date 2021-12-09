@@ -4,7 +4,7 @@ from networkx.algorithms import dijkstra_path
 import itertools
 import time
 import datetime as dt
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 
 # Retourne la liste de toutes les villes du dataframe
