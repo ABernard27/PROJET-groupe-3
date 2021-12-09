@@ -10,13 +10,13 @@ Le module Carte permet de créer une carte enregistrée automatiquement sous for
 
 .. automodule:: Coberny.map.Carte
    :members:
-
-Après avoir exécuté ce code nous obtenons la carte suivante : 
+ 
 
 .. figure:: exemple_carte.jpg
    :width: 500
    :align: center
-   
+
+\   
 
 Distribution
 ------------
@@ -34,6 +34,8 @@ Si nous exécutons ce code, nous obtenons :
 
 .. figure:: plot3.png
    :align: center   
+
+\
 
 Graph et minimisation du coût
 -----------------------------

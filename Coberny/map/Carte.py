@@ -24,6 +24,8 @@ def carte(Coord, Name, Key, prix):
     .. code::
     
     	Coberny.carte(np.column_stack([data['x'],data['y']]), data[' Nom gare' ], '5b3ce3597851110001cf6248dfd20bf8793e4e978b4bb0ca383bfd55', prix)
+    
+    Après avoir exécuté le code, nous obtenons la carte suivante : 
     """
     start = time.time()
     client = openrouteservice.Client(key=Key) 
