@@ -10,7 +10,7 @@ import Coberny as cyb
 
 
 class distribution(object):
-    """
+    """Après excution du code, c'est dans votre fenêtre interactive que vous trouverez les widgets (les menus déroulants) qui vous permettront qui modifier l'entrée et la sortie à votre souhait.\n 
     
     :param dataframe Distance: Le dataframe des distances entre chaque sortie.
     :param dataframe Prix: Le dataframe des prix entre chaque sortie.
