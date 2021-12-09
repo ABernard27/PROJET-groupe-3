@@ -126,6 +126,11 @@ def FindBestPathForPrice(data, entrance, outlet, k):
     :param int k: Contrainte du nombre de sorties maximales imposées par l'utilisateur
     
     :returns: Un couple. Le 1er element du couple est la liste des sommets du chemin optimal. Le 2ème élément du couple est le prix total (minimal) que l'utilisateur va payer en empruntant ce chemin.
+    
+    .. code:: 
+    
+            Coberny.FindBestPathForPrice(data, entrance, outlet, k)
+    
     """
     if k > GetKMaxConstraint(data, entrance, outlet):
         ans = 'La contrainte k est supérieure au nombre maximal de sorties possibles'
@@ -167,6 +172,11 @@ def CreateGraphOfBestPathForPrice(data, entrance, outlet, k):
     :param int k: Contrainte du nombre de sorties maximales imposées par l'utilisateur
 
     :returns: Le graphe du chemin optimal entre la ville de départ et celle d'arrivée
+    
+    .. code:: 
+    
+            Coberny.CreateGraphOfBestPathForPrice(data, entrance, outlet, k)
+    
     """
     
     if k > GetKMaxConstraint(data, entrance, outlet):
