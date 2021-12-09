@@ -11,9 +11,7 @@ Un extrait du tableau des distances
    :width: 600
    :align: center
 
-\
-Le tableau des distances doit être un tableau symétrique carré, il doit avoir les noms des colonnes et les indices identiques pour le bon fonctionnement des fonctions.
-\
+
 
 Un extrait du tableau des prix
 -------------------------------
@@ -22,18 +20,18 @@ Un extrait du tableau des prix
    :width: 600
    :align: center
 
-\
 
-Le tableau des prix doit également être carré et symétrique. Mais il doit avoir des indices numérotés de 0 à la taille du tableau -1. Ces indices sont importants pour les fonctions carte et distribution.
-
-\
-
-Un extrait du graph représentant le chemin optimal 
---------------------------------------------------
-
-Il s'agit du chemin revenant le moins cher entre Sigean (ville de départ) et Nailloux (ville d'arrivée).
-\
-
+Graph du chemin optimal (celui revenant le moins cher) entre Sigean et Nailloux.
+------------------------------------------------------------------------------------------------------------------------------------------------
 .. figure:: graph.png
-   :width: 500
+   :width: 600
    :align: center
+   
+   
+Pour que l'algorithme puisse fonctionner, il est primordial que les données soit représentées dans un dataframe de la forme suivante:
+
+.. figure:: dataframe.png
+   :width: 600
+   :align: center
+   
+Comme vous pouvez le constater, il faut que la première colonne du dataframe soit composée uniquement du nom des villes. Les noms des autres colonnes représentent également les noms des villes. Les valeurs numériques du dataframe représentent le prix que l'on va payer pour un trajet direct entre la ville associé à la ligne et la ville associée à la colonne.
