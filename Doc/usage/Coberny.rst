@@ -20,9 +20,7 @@ Le module Carte permet de créer une carte enregistrée automatiquement sous for
 
 Distribution
 ------------
-Le module Distribution nous permet créer un Kernel Density Estimation (KDE)  qui est une méthode non-paramétrique d’estimation de la densité de probabilité d’une variable aléatoire.
-Ici, nous allons utiliser le prix au kilomètre comme variable aléatoire. Le KDE va être celui de l'estimation de la densité de la variable Prix/Kilomètre.\n
-De plus, ce module nous permet de visualiser les prix au kilomètre sur chaque section de la portion d'autoroute souhaitée.
+Le module Distribution nous permet créer un Kernel Density Estimation (KDE)  qui est une méthode non-paramétrique d’estimation de la densité de probabilité d’une variable aléatoire. Ici, nous allons utiliser le prix au kilomètre comme variable aléatoire. Le KDE va être celui de l'estimation de la densité de la variable Prix/Kilomètre. De plus, ce module nous permet de visualiser les prix au kilomètre sur chaque section de la portion d'autoroute souhaitée.
 
 
 .. automodule:: Coberny.distribution_of_price.distribution
