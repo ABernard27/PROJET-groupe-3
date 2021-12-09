@@ -10,7 +10,7 @@ Ce package est destiné à visualiser l'autoroute par laquelle vous souhaitez pa
 
 
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 2
    :caption: Table des matières:
 
 .. toctree::
