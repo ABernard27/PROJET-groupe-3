@@ -66,5 +66,14 @@ Si nous exécutons ce code nous obtenons :
 .. figure:: res1.png
    :width: 500
    :align: center
+   
+
+Pour simplifier la prise en main de notre package, nous avons également crée une interface utilisateur.
+
+.. figure:: UI.png
+   :width: 500
+   :align: center
+
+Comme vous pouvez le voir sur l'image ci-dessus, ce dernier va pouvoirvia l'utilisation de boutons et de widgets, charger son fichier de données, charger les villes de départs et en choisir une. Il va pouvoir ensuite choisir la ville d'arrivée totu en renseignant sur la contrainte du nombre de sorties maximales. Enfin, il pourra éxecuter l'algorithme.
 
 \
