@@ -56,9 +56,11 @@ Le module Graph et minimisation permet de déterminer et de visualiser le trajet
 Si nous exécutons ce code nous obtenons :
 
 .. figure:: graph2.png
+   :width: 500
    :align: center
 
 .. figure:: res1.png
+   :width: 500
    :align: center
 
 \
