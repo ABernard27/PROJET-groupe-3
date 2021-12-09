@@ -69,7 +69,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Données à titre d’exemple</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#un-extrait-du-tableau-des-distances">Un extrait du tableau des distances</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#un-extrait-du-tableau-des-prix">Un extrait du tableau des prix</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#un-extrait-du-graph-representant-le-chemin-optimal-celui-revenant-le-moins-cher-entre-sigean-ville-de-depart-et-nailloux-ville-d-arrivee">Un extrait du graph représentant le chemin optimal (celui revenant le moins cher) entre Sigean (ville de départ) et Nailloux (ville d’arrivée).</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#graph-du-chemin-optimal-celui-revenant-le-moins-cher-entre-sigean-et-nailloux">Graph du chemin optimal (celui revenant le moins cher) entre Sigean et Nailloux.</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Packages.html">Liste des packages utiles</a></li>
@@ -79,7 +79,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Coberny.html">Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="Coberny.html#carte">Carte</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Coberny.html#distribution">Distribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Coberny.html#module-Coberny.graph_min_cost.best_price_path">Graph et minimisation du coût</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Coberny.html#graph-et-minimisation-du-cout">Graph et minimisation du coût</a></li>
 </ul>
 </li>
 </ul>
@@ -130,18 +130,29 @@
 <figure class="align-center">
 <a class="reference internal image-reference" href="../_images/distance.png"><img alt="../_images/distance.png" src="../_images/distance.png" style="width: 600px;" /></a>
 </figure>
+<p></p>
+<p>Le tableau des distances doit être symétrique (donc carré) et les noms des colonnes et des indices doivent être identiques.</p>
+<p></p>
 </section>
 <section id="un-extrait-du-tableau-des-prix">
 <h2>Un extrait du tableau des prix<a class="headerlink" href="#un-extrait-du-tableau-des-prix" title="Lien permanent vers ce titre">¶</a></h2>
 <figure class="align-center">
 <a class="reference internal image-reference" href="../_images/prix.png"><img alt="../_images/prix.png" src="../_images/prix.png" style="width: 600px;" /></a>
 </figure>
+<p></p>
+<p>Le tableau des prix doit également être symétrique et pour que les fonctions <em>carte</em> et <em>distribution</em> fonctionnent bien les indices doivent être numérotés de 0 à n-1 où n est la taille du tableau.</p>
+<p></p>
 </section>
-<section id="un-extrait-du-graph-representant-le-chemin-optimal-celui-revenant-le-moins-cher-entre-sigean-ville-de-depart-et-nailloux-ville-d-arrivee">
-<h2>Un extrait du graph représentant le chemin optimal (celui revenant le moins cher) entre Sigean (ville de départ) et Nailloux (ville d’arrivée).<a class="headerlink" href="#un-extrait-du-graph-representant-le-chemin-optimal-celui-revenant-le-moins-cher-entre-sigean-ville-de-depart-et-nailloux-ville-d-arrivee" title="Lien permanent vers ce titre">¶</a></h2>
+<section id="graph-du-chemin-optimal-celui-revenant-le-moins-cher-entre-sigean-et-nailloux">
+<h2>Graph du chemin optimal (celui revenant le moins cher) entre Sigean et Nailloux.<a class="headerlink" href="#graph-du-chemin-optimal-celui-revenant-le-moins-cher-entre-sigean-et-nailloux" title="Lien permanent vers ce titre">¶</a></h2>
 <figure class="align-center">
 <a class="reference internal image-reference" href="../_images/graph.png"><img alt="../_images/graph.png" src="../_images/graph.png" style="width: 600px;" /></a>
 </figure>
+<p>Pour que l’algorithme puisse fonctionner, il est primordial que les données soit représentées dans un dataframe de la forme suivante:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/dataframe.png"><img alt="../_images/dataframe.png" src="../_images/dataframe.png" style="width: 600px;" /></a>
+</figure>
+<p>Comme vous pouvez le constater, il faut que la première colonne du dataframe soit composée uniquement du nom des villes. Les noms des autres colonnes représentent également les noms des villes. Les valeurs numériques du dataframe représentent le prix que l’on va payer pour un trajet direct entre la ville associé à la ligne et la ville associée à la colonne.</p>
 </section>
 </section>
 

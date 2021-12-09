@@ -48,8 +48,32 @@ Si nous exécutons ce code, nous obtenons :
 
 Graph et minimisation du coût
 -----------------------------
+Le module Graph et minimisation permet de déterminer et de visualiser le trajet revenant le moins cher si l'on souhaite se déplacer d'une ville A de départ à une ville B d'arrivée.
 
 .. automodule:: Coberny.graph_min_cost.best_price_path
    :members:
+   
+.. figure:: code.png
+   :width: 500
+   :align: center
+   
+Si nous exécutons ce code nous obtenons :
 
+.. figure:: graph2.png
+   :width: 500
+   :align: center
 
+.. figure:: res1.png
+   :width: 500
+   :align: center
+   
+
+Pour simplifier la prise en main de notre package, nous avons également crée une interface utilisateur.
+
+.. figure:: UI.png
+   :width: 500
+   :align: center
+
+Comme vous pouvez le voir sur l'image ci-dessus, ce dernier va pouvoir via l'utilisation de boutons et de widgets, charger son fichier de données, charger les villes de départs et en choisir une. Il va pouvoir ensuite choisir la ville d'arrivée tout en renseignant sur la contrainte du nombre de sorties maximales. Enfin, il pourra cliquer sur le bouton qui exécutera l'algorithme déterminant quel est le chemin optimal pour son trajet.
+
+\
