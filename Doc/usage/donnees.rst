@@ -21,3 +21,8 @@ Un extrait du tableau des prix
    :align: center
 
 
+Un extrait du graph représentant le chemin optimal (celui revenant le moins cher) entre Sigean (ville de départ) et Nailloux (ville d'arrivée).
+------------------------------------------------------------------------------------------------------------------------------------------------
+.. figure:: graph.png
+   :width: 600
+   :align: center
