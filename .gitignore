@@ -3,7 +3,6 @@
 .coverage
 tilescache*
 build*
-dist*
 *.egg-info
 .pytest_cache
 ignore*
