@@ -42,7 +42,7 @@ def carte(Coord, Name, Key, prix):
             f.write(json.dumps(res, indent=4, sort_keys=True))
 
         geometry = client.directions(coords)['routes'][0]['geometry']
-        # decode_polyline est une fonction pour relier les points
+        # decode_polyline est une fonction pour décoder les points
         decoded = convert.decode_polyline(geometry)
         distance_txt = "<h4> <b>Distance :&nbsp" + "<strong>" + str(round(res['routes'][0]['summary']['distance'] / 1000, 1)) + " Km </strong>" + "</h4></b>"
         duration_txt = "<h4> <b>Duration :&nbsp" + "<strong>"+ str(round(res['routes'][0]['summary']['duration'] / 60, 1)) + " Mins. </strong>" + "</h4></b>"
