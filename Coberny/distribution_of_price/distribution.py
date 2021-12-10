@@ -7,7 +7,6 @@ import seaborn as sns
 import time
 from ipywidgets import interact
 import Coberny as cyb
-from Coberny import indice
 
 
 class distribution(object):
