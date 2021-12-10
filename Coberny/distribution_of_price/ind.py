@@ -1,4 +1,4 @@
-def indice(l, DISTANCE):
+def ind(l, DISTANCE):
     for i in range(DISTANCE.shape[0]):
         if (DISTANCE.columns[i+1] == l):
             return i 
