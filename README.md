@@ -4,6 +4,10 @@ Ce projet est dirigé par Chery Fanny (fanny.chery@etu.umontpellier.fr), Côme O
 ## Introduction
 Ce package python nommé Coberny (Co=Côme, Ber=Bernard, Ny=Fanny) vise à étudier les autoroutes sous plusieurs angles. Tout d'abord il permet d'afficher une distribution des prix sur différents trajets. Il permet de créer un carte sur laquelle nous pouvons voir le trajet de l'autoroute ainsi que les prix, les temps et les distances entre deux portions d'autoroute. Pour finir il permet de déterminer, avec un nombre fixé de sortie, les sorties à effectuer pour avoir un coût du trajet minimal sur une portion donnée. La description détaillée des différents modules se trouve dans la documentation.
 
+<p align="center">
+  <img src="https://github.com/ABernard27/PROJET-groupe-3/blob/master/Document/logo_raccoon.png" width=200 title="Racoon">
+</p>
+
 ## Programme de Travail
 - Codage et visualisation de la carte permettant de déterminer le prix entre deux péages. 
 - Codage de l'algorithme minimisant le coût du péage avec une contrainte k du nombre de sortie 
