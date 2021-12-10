@@ -97,7 +97,7 @@ end2 = time.time()
 print("Temps passé pour exécuter la commande: {0:.5f} s.".format(end2 - start2))
 # %%
 start3 = time.time()
-url = 'https://raw.githubusercontent.com/ABernard27/PROJET-groupe-3/Developpement/Document/tarif.csv'
+url = 'https://raw.githubusercontent.com/ABernard27/PROJET-groupe-3/master/Document/tarif.csv'
 path_target = "./tarif.csv"
 download(url, path_target, replace = False)
 
