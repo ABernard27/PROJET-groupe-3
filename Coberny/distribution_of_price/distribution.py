@@ -68,7 +68,7 @@ Le bar plot des prix au kilomètre entre chaque portion de l'autoroute.
                     DISTKM[i] = (self.Prix[A[i]][A[i+1]])/(self.Distance[A[i]][indice(A[i+1],self.Distance)])
                 else: DISTKM[i] = 0  
             fig, ax = plt.subplots(1, 1, figsize=(5, 5))
-            sns.kdeplot(y=DISTKM, bw_adjust=bw, shade=True, vertical=True, cut=0, ax=ax, color='orange')
+            sns.kdeplot(y=DISTKM, bw_adjust=bw, shade=True, vertical=True, cut=0, ax=ax, color='blue')
             plt.xlabel('Trajet')
             plt.ylabel('Prix au kilomètre')
             plt.title("Distribution des prix")
@@ -100,7 +100,7 @@ Le bar plot des prix au kilomètre entre chaque portion de l'autoroute.
             P = np.arange(len(A)-1)
             x = P
             plt.title("Prix au kilomètre")
-            plt.bar(x, height, width, color='orange', alpha=0.3, align='edge', edgecolor='orange', linewidth=3)
+            plt.bar(x, height, width, color='orange', alpha=0.3, align='edge', edgecolor='blue', linewidth=3)
             plt.xticks(np.arange(len(A)), A, rotation=75)
 
         interact(barplot, Entrée=villes, Sortie=villes)
