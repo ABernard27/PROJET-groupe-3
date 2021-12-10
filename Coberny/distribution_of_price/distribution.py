@@ -7,7 +7,11 @@ import seaborn as sns
 import time
 from ipywidgets import interact
 
-
+def indice(l, DISTANCE):
+    for i in range(DISTANCE.shape[0]):
+        if (DISTANCE.columns[i+1] == l):
+            return i 
+        else: i = i + 1
 
 
 class distribution(object):
@@ -45,13 +49,6 @@ Le bar plot des prix au kilomètre entre chaque portion de l'autoroute.
         """
         villes = sorted(self.Prix.columns.unique())
         start4 = time.time()
-        
-        
-        def indice(l, DISTANCE):
-            for i in range(DISTANCE.shape[0]):
-                if (DISTANCE.columns[i+1] == l):
-                    return i 
-                else: i = i + 1
                     
                     
         def kde_explore(bw=0.2, Entrée=villes, Sortie=villes):
