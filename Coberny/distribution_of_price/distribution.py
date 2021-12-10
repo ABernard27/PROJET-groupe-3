@@ -26,12 +26,6 @@ class distribution(object):
     def __init__(self,Distance,Prix):
         self.Distance = Distance
         self.Prix = Prix
-    
-    def indice(l, DISTANCE):
-        for i in range(DISTANCE.shape[0]):
-            if (DISTANCE.columns[i+1] == l):
-                return i 
-            else: i = i + 1
 
     
     # Plot le KDE: la distribution
@@ -51,7 +45,15 @@ Le bar plot des prix au kilomètre entre chaque portion de l'autoroute.
         """
         villes = sorted(self.Prix.columns.unique())
         start4 = time.time()
-
+        
+        
+        def indice(l, DISTANCE):
+            for i in range(DISTANCE.shape[0]):
+                if (DISTANCE.columns[i+1] == l):
+                    return i 
+                else: i = i + 1
+                    
+                    
         def kde_explore(bw=0.2, Entrée=villes, Sortie=villes):
 
             G = nx.Graph(self.Prix)
