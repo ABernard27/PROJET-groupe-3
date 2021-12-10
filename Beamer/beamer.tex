@@ -3,6 +3,18 @@
 \usetheme{Warsaw}
 \usecolortheme{crane}
 \usecolortheme{orchid}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
+\definecolor{darkWhite}{rgb}{0.94,0.94,0.94}
+\newcommand{\TextSoulign}[3]{\emph{\textcolor{#1}{\underline{#2\textcolor{black}{#3}}}}}
+
+\lstset{
+   backgroundcolor={darkWhite}
+}
+
 
 \title{Package Coberny}
 \author{A.Bernard, F.Chery, O.Côme}\institute{Faculté des sciences de Montpellier}
@@ -23,20 +35,23 @@
 \subsection{Création de la base de données}
 
 \begin{frame}[fragile]{Création de la base de données}
-Dataframe intermédiaire : \newline
+\TextSoulign{amber}{Dataframe intermédiaire} : \newline
 \begin{itemize}
 \item Pour créer le data nous avons utilisé $\textbf{pandas}$ pour sélectionner uniquement les sorties d'autoroute concernées par le projet et enlever les portions gratuites.  
 \item Nous avons utilisé $\textbf{pyproj}$ pour transformer les coordonnées L93 en WGS84. Nous avons donc obtenu à la suite un dataframe avec les noms des autoroutes, les noms des péages et les coordonnées GPS.
 \end{itemize}
 \end{frame}
 
+
 \begin{frame}[fragile]{Création de la base de données}
-Dataframe des distances et des prix: \newline
-\begin{itemize}
-\item Nous avons utilisé $\textbf{requests}$ et $\textbf{json}$ pour faire des requêtes de distance entre chaque coordonnées du dataframe créé précédemment. Ces packages utilisent les données de $\textbf{openstreetmap}$.
-\item Nous avons simplement reporté le fichier que nous avions en fichier $\textit{.csv}$ pour l'utiliser avec $\textbf{pandas}$ et choisir les péages voulus. Puis nous avons renommé les colonnes pour être cohérent avec les autres dataframe.
-\end{itemize}
+\begin{block}{Dataframe des prix}
+Nous avons simplement reporté le fichier que nous avions en format $\textit{.csv}$ pour l'utiliser avec $\textbf{pandas}$ et choisir les péages voulus. Puis nous avons renommé les colonnes pour être cohérent avec les autres dataframe.
+\end{block}
+\begin{block}{Dataframe des distances}
+Nous avons utilisé $\textbf{requests}$ et $\textbf{json}$ pour faire des requêtes de distance entre chaque coordonnées du dataframe créé précédemment. Ces packages utilisent les données de $\textbf{openstreetmap}$.
+\end{block}
 \end{frame}
+
 
 
 \subsection{Présentation du package Coberny}
@@ -59,11 +74,60 @@ Ce package permet de réaliser 3 actions primaires : \newline
 \subsection{Création de la carte}
 
 \begin{frame}[fragile]{Création de la carte}
+
+La carte repose sur 3 packages essentiels : $\textbf{openrouteservice}$, $\textbf{json}$ et $\textbf{folium}$. Il y a une petite manipulation en plus pour exécuter cette fonction : créer une clé API sur $\textit{openrouteservice.org}$. Le code créé exécute des requêtes avec les points de coordonnées entrés pour relier tous ses points. L'API de direction renvoie des polylignes codés (série de coordonnées sous la forme d'une seule chaîne), à l'aide de 
+$\textit{convert.decode\_polyline}$ on peut les décoder. Ensuite $\textit{folium.GeoJson(decoded).add\_to(m)}$ ajoute à la carte les points reliés. $\textit{summary}$ permet de récupérer les distances dans le fichier json pour les afficher. Enfin, $\textit{folium.Marker}$ permet d'ajouter les marqueurs.
 \end{frame}
 
 \subsection{Utilisation}
 \begin{frame}[fragile]{Utilisation}
+Pour utiliser cette fonction les dataframe doivent être de la forme suivante : (extrait des tableaux)
+\begin{center}
+\begin{tabular}{|*{4}{c|}}
+\hline
+&MONTPELLIER&SETE&AGDE \\
+\hline
+0&0.0&1.6&3.6\\
+\hline
+1&1.6&0.0&1.9 \\
+\hline
+2&3.6&1.9&0.0\\
+\hline
+\end{tabular} \newline
+Extrait tableau des prix
+\end{center}
+\begin{center}
+\begin{tabular}{|*{4}{c|}}
+\hline
+&MONTPELLIER&SETE&AGDE \\
+\hline
+MONTPELLIER&0.0&17.0&41.0\\
+\hline
+SETE&17.0&0.0&26.0 \\
+\hline
+AGDE&41.0&26.0&0.0\\
+\hline
+\end{tabular} \newline
+Extrait tableau des distances
+\end{center}
 \end{frame}
+
+\subsection{Exemple}
+\begin{frame}[fragile]{Exemple}
+Par exemple our utiliser la fonction carte il suffit d'importer $\textbf{Coberny}$ puis de taper la commande suivante : 
+\begin{block}{Exemple d'utilisation}
+Coberny.carte(np.column$\_$stack([data['x'],data['y']]), data[' Nom gare' ], 'Key', prix)
+\end{block}
+Ici data est un dataframe contenant les noms des péages ainsi que leur coordonnée (longitude, latitude), Key est la clé openrouteservice, et prix est le dataframe contenant les prix entre toutes les sections.
+Après avoir exécuter ce code nous obtenons la carte suivante où l'on peut cliquer sur les marqueurs et les portions de route : 
+\end{frame}
+
+\begin{frame}[fragile]{Exemple}
+\begin{center}
+\includegraphics[scale=0.3]{carte.png}
+\end{center}
+\end{frame}
+
 
 
 \section{Distribution des prix}

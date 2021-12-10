@@ -1,0 +1,4 @@
+\begin{block}{Exemple d'utilisation}
+Coberny.carte(np.column$\_$stack([data['x'],data['y']]), data[' Nom gare' ], 'Key', prix)
+\end{block}
+Coberny.carte(np.column_stack([data['x'],data['y']]), data[' Nom gare' ], 'Key', prix)
