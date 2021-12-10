@@ -12,19 +12,19 @@ from Coberny.url import *
 def test_indice1():   
     download(url_dist, path_dist, replace=True)
     DISTANCE=pd.read_csv("Distance.csv", sep=',')
-    assert cyb.indice('AGDE', DISTANCE) == 2
+    assert cyb.ind('AGDE', DISTANCE) == 2
 
 
 def test_indice2():
     download(url_dist, path_dist, replace=True)
     DISTANCE=pd.read_csv("Distance.csv", sep=',')
-    assert cyb.indice('CASTELNAUDARY', DISTANCE) == 16
+    assert cyb.ind('CASTELNAUDARY', DISTANCE) == 16
 
 
 def test_indice3():
     download(url_dist, path_dist, replace=True)
     DISTANCE=pd.read_csv("Distance.csv", sep=',')
-    assert cyb.indice('MONTGISCARD', DISTANCE) == 21 
+    assert cyb.ind('MONTGISCARD', DISTANCE) == 21 
 
 
 def KMaxConstraint():
