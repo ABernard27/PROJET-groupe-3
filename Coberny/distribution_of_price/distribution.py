@@ -69,8 +69,7 @@ Le bar plot des prix au kilomètre entre chaque portion de l'autoroute.
                 else: DISTKM[i] = 0  
             fig, ax = plt.subplots(1, 1, figsize=(5, 5))
             sns.kdeplot(y=DISTKM, bw_adjust=bw, shade=True, vertical=True, cut=0, ax=ax, color='blue')
-            plt.xlabel('Trajet')
-            plt.ylabel('Prix au kilomètre')
+            plt.xlabel('Prix au kilomètre')
             plt.title("Distribution des prix")
             plt.tight_layout()
             plt.show()
