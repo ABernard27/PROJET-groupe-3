@@ -100,7 +100,7 @@ Le bar plot des prix au kilomètre entre chaque portion de l'autoroute.
             P = np.arange(len(A)-1)
             x = P
             plt.title("Prix au kilomètre")
-            plt.bar(x, height, width, color='orange', alpha=0.3, align='edge', edgecolor='blue', linewidth=3)
+            plt.bar(x, height, width, color='blue', alpha=0.2, align='edge', edgecolor='blue', linewidth=3)
             plt.xticks(np.arange(len(A)), A, rotation=75)
 
         interact(barplot, Entrée=villes, Sortie=villes)
