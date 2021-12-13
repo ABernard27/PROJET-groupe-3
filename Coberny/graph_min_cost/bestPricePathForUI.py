@@ -185,7 +185,7 @@ def GraphOfBestPathForPrice_UI(data, entrance, outlet, k, ax = None):
 
 
 if __name__ == '__main__':
-    df_price = pd.read_csv('highway_price'.csv')
+    df_price = pd.read_csv('highway_price.csv')
     df_price = df_price.fillna(0)
     startTime = time.time()
     print('Couple meilleur chemin et prix: ',
