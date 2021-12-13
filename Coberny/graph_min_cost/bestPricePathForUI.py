@@ -145,7 +145,7 @@ def FindBestPathForPrice(data, entrance, outlet, k):
 # entre la ville de départ et celle d'arrivée
 # Les sorties intermédiraires sont coloriées en orange
 # La ville de départ et d'arrivée sont coloriées en bleu
-def CreateGraphOfBestPathForPrice(data, entrance, outlet, k, ax = None):
+def GraphOfBestPathForPrice_UI(data, entrance, outlet, k, ax = None):
     if k > GetKMaxConstraint(data, entrance, outlet):
         ans = 'La contrainte k est supérieure au nombre maximal de sorties possibles'
         return ans
@@ -190,7 +190,7 @@ if __name__ == '__main__':
     startTime = time.time()
     print('Couple meilleur chemin et prix: ',
           FindBestPathForPrice(df_price,'Sete', 'Montgiscard', 5))
-    CreateGraphOfBestPathForPrice(df_price, 'Sete', 'Montgiscard', 5)
+    GraphOfBestPathForPrice_UI(df_price, 'Sete', 'Montgiscard', 5)
     runTime = time.time() - startTime
     roundRunTime = str(dt.timedelta(seconds=runTime))
     print("Le temps d'execution du programme vaut: ",
