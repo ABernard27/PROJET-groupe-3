@@ -5,6 +5,7 @@ Created on Thu Dec  9 21:16:38 2021
 @author: olivi
 """
 
+import Coberny as cyb
 import pandas as pd
 import tkinter as tk
 from tkinter import ttk
@@ -12,7 +13,7 @@ from tkinter import scrolledtext
 from tkinter.filedialog import askopenfilename
 import time
 import datetime as dt
-import bestPricePathForUI as best_pp
+#import bestPricePathForUI as best_pp
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
@@ -160,14 +161,14 @@ class AppFindBestPathForPrice():
     
     
     def loadDepartCity(self):
-        departCityList = best_pp.GetListOfcolnames(self.data)
+        departCityList = cyb.GetListOfcolnames(self.data)
         self.cbox_departCity['values'] = tuple(departCityList)
         self.cbox_departCity.current(0)
         self.cbox_departCity.configure(state='readonly')
     
     
     def loadDestinationCity(self, event):
-        departCityList = best_pp.GetListOfcolnames(self.data)
+        departCityList = cyb.GetListOfcolnames(self.data)
         destinaCityList = departCityList[:]
         destinaCityList.remove(self.cbox_departCity.get())
         self.cbox_destinaCity['values'] = tuple(destinaCityList)
@@ -177,7 +178,7 @@ class AppFindBestPathForPrice():
 
 
     def findStepsOnPath(self):
-        kMaxConstraint = best_pp.GetKMaxConstraint(self.data,
+        kMaxConstraint = cyb.GetKMaxConstraint(self.data,
                                                    self.departureCity.get(),
                                                    self.destinationCity.get())
         stepsNb_list = [x for x in range(0, kMaxConstraint + 1)]
@@ -191,7 +192,7 @@ class AppFindBestPathForPrice():
         self.winResult.insert(tk.INSERT, '*************************************\n')
         self.winResult.insert(tk.END, '*************************************\n')
         startTime1 = time.time()
-        bestPathPriceCouple = best_pp.FindBestPathForPrice(self.data,
+        bestPathPriceCouple = cyb.FindBestPathForPrice(self.data,
                                                            self.departureCity.get(),
                                                            self.destinationCity.get(),
                                                            self.stepsNumber.get())
@@ -214,7 +215,7 @@ class AppFindBestPathForPrice():
         plt.axis('off')
         
         startTime2 = time.time()
-        best_pp.CreateGraphOfBestPathForPrice(self.data,
+        cyb.GraphOfBestPathForPrice_UI(self.data,
                                               self.departureCity.get(),
                                               self.destinationCity.get(),
                                               self.stepsNumber.get(),
