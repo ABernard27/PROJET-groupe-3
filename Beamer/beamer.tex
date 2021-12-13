@@ -60,7 +60,7 @@ pip install git+https://github.com/ABernard27/PROJET-groupe-3
 \end{block}
 Ce package permet de réaliser 3 actions primaires : \newline
 \begin{itemize}
-\item Réaliser une carte intéractive d'un trajet sur l'autoroute en affichant les noms des stations, le prix entre deux stations et le temps en kilomètres.
+\item Réaliser une carte intéractive d'un trajet sur l'autoroute en affichant les noms des stations, le prix entre deux stations, le temps en minutes et la distance en kilomètres.
 \item Afficher la distribution des prix entre deux sorties
 \item Déterminer, en fonction du nombre de sorties acceptées, le trajet le moins coûteux
 \end{itemize}
@@ -142,7 +142,7 @@ Après avoir exécuter ce code nous obtenons la carte suivante où l'on peut cli
 \subsection{Création du code}
 
 \begin{frame}[fragile]{Code}
-\begin{block}{Structute de la classe $\textbf{Distribution}$ }
+\begin{block}{Structure de la classe $\textbf{Distribution}$ }
 \end{block}
 \begin{itemize}
 \item Une fonction $\textbf{Graph}$ qui contient deux définitions, et qui permet de visualiser le graphe du trajet. 
@@ -304,7 +304,7 @@ Lors de l'excution de ce code, nous obtenons :
 	
 		\begin{block}{\tiny Exemple de sortie obtenue}
 			\tiny
-			Voici un exemple de ce que retourne la fonction \textbf{CreateGraphOfBestPathForPrice} en prenant les mÃªme arguments que ceux utilisés dans la slide précédente.
+			Voici un exemple de ce que retourne la fonction \textbf{CreateGraphOfBestPathForPrice} en prenant les même arguments que ceux utilisés dans la slide précédente.
 				\begin{figure}
 					\begin{center}
 						\includegraphics[scale=0.24]{graph_exemple.png}
@@ -317,7 +317,7 @@ Lors de l'excution de ce code, nous obtenons :
 	\begin{frame}{Minimisation coût du trajet}
 		\begin{block}{Utilisation de l'interface utilisateur}
 			Nous avons crée une interface utilisateur à  partir du fichier \textbf{best\_price\_pathUI.py}. Ce dernier utilise les fonctions du fichier \textbf{bestPricePathForUI.py}.
-			Cette interface va permettre Ã  l'utilisateur de sélectionner ses données puis de charger les villes de départ. Ensuite, il pourra directement via des menus déroulants, sélectionner la ville de départ, la ville d'arrivée ainsi que le nombre de sorties maximal souhaité (Cela permet d'éviter des erreurs de saisies). Enfin, il pourra exécuter l'algorithme en cliquant sur le bouton "\textit{Trouver le meilleur trajet au meilleur prix}".
+			Cette interface va permettre à  l'utilisateur de sélectionner ses données puis de charger les villes de départ. Ensuite, il pourra directement via des menus déroulants, sélectionner la ville de départ, la ville d'arrivée ainsi que le nombre de sorties maximal souhaité (Cela permet d'éviter des erreurs de saisies). Enfin, il pourra exécuter l'algorithme en cliquant sur le bouton "\textit{Trouver le meilleur trajet au meilleur prix}".
 		\end{block}
 	\end{frame}
 
