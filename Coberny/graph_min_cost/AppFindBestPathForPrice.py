@@ -174,7 +174,7 @@ def UI():
             self.cbox_departCity.configure(state='readonly')
 
 
-        def loadDestinationCity(self):
+        def loadDestinationCity(self, event):
             departCityList = cyb.GetListOfcolnames(self.data)
             destinaCityList = departCityList[:]
             destinaCityList.remove(self.cbox_departCity.get())
