@@ -170,7 +170,7 @@ class AppFindBestPathForPrice():
             self.cbox_departCity.configure(state='readonly')
 
 
-        def loadDestinationCity(self, event):
+        def loadDestinationCity(self):
             departCityList = cyb.GetListOfcolnames(self.data)
             destinaCityList = departCityList[:]
             destinaCityList.remove(self.cbox_departCity.get())
