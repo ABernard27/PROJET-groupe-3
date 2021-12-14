@@ -253,8 +253,8 @@ def UI():
                 canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
         
-app = AppFindBestPathForPrice()
-return app.win.mainloop()
+    app = AppFindBestPathForPrice()
+    return app.win.mainloop()
 
   #if __name__ == "__main__":
     
