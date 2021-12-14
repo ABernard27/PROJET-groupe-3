@@ -10,7 +10,7 @@ import Coberny as cyb
 from Coberny.url import *
 
 def test_indice1():   
-    download(url_dist, path_dist, replace=True)
+    download(url_prix, path_prix, replace=True)
     Prix=pd.read_csv("Prix.csv", sep=',')
     assert cyb.ind('Agde Pezenas', Prix) == 2
 
