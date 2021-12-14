@@ -45,4 +45,9 @@ cyb.carte(np.column_stack([data['x'],data['y']]),data[' Nom gare '],key,Prix_map
 cyb.distribution(Distance, Prix).Graph()
 
 # %%
-#La parole est à Olivier : 
+#Lancement de l'interface utilisateur 
+# Lorsque la fenêtre de l'interface utilisateur s'ouvrira
+# Il vous sera demandé de choisir un fichier csv.
+# Il faut choisir le fichier csv des Prix c'est à dire le fichier intitulé "highway_price.csv"
+app = cyb.AppFindBestPathForPrice()
+app.win.mainloop()
