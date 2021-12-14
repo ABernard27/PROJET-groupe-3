@@ -254,7 +254,7 @@ def UI():
 
         
     app = AppFindBestPathForPrice()
-    return app.win.mainloop()
+    app.win.mainloop()
 
   #if __name__ == "__main__":
     
