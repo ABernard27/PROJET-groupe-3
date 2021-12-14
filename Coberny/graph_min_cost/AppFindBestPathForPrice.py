@@ -252,8 +252,8 @@ def UI():
             toolbar.update()
             canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
-        
-    return app = AppFindBestPathForPrice()
+    app  = AppFindBestPathForPrice()
+    return app 
 #app.win.mainloop()
 
   #if __name__ == "__main__":
