@@ -49,5 +49,5 @@ cyb.distribution(Distance, Prix).Graph()
 # Lorsque la fenêtre de l'interface utilisateur s'ouvrira
 # Il vous sera demandé de choisir un fichier csv.
 # Il faut choisir le fichier csv des Prix c'est à dire le fichier intitulé "highway_price.csv"
-app = cyb.AppFindBestPathForPrice()
+app = cyb.AppFindBestPathForPrice.UI()
 app.win.mainloop()
