@@ -11,3 +11,4 @@ requests==2.26.0
 seaborn==0.11.2
 setuptools==58.0.4
 sphinx_pdj_theme==0.2.1
+tk==0.1.0
