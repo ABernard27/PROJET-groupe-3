@@ -25,12 +25,6 @@ path_target = "./data.csv"
 download(url, path_target, replace = True)
 data = pd.read_csv('data.csv', sep = ',')
 
-url = 'https://raw.githubusercontent.com/ABernard27/PROJET-groupe-3/master/Document/highway_price.csv'
-path_target = "./highway_price.csv"
-download(url, path_target, replace = True)
-Price = pd.read_csv('highway_price.csv')
-Price.fillna(0,inplace=True)
-
 url = 'https://raw.githubusercontent.com/ABernard27/PROJET-groupe-3/master/Document/Prix_map.csv'
 path_target = "./Prix_map.csv"
 download(url, path_target, replace = True)
