@@ -9,20 +9,29 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) + (os.path.sep + '..'
 import Coberny as cyb
 from Coberny.url import *
 
-def test_indice1():   
-    download(url_dist, path_dist, replace=True)
+def test_indice1(): 
+    url = 'https://raw.githubusercontent.com/ABernard27/PROJET-groupe-3/master/Document/Distance.csv'
+    path_target = "./Distance.csv"
+    download(url, path_target, replace = True)
+    #download(url_dist, path_dist, replace=True)
     DISTANCE=pd.read_csv("Distance.csv", sep=',')
     assert cyb.ind('Agde Pezenas', DISTANCE) == 2
 
 
 def test_indice2():
-    download(url_dist, path_dist, replace=True)
+    url = 'https://raw.githubusercontent.com/ABernard27/PROJET-groupe-3/master/Document/Distance.csv'
+    path_target = "./Distance.csv"
+    download(url, path_target, replace = True)
+    #download(url_dist, path_dist, replace=True)
     DISTANCE=pd.read_csv("Distance.csv", sep=',')
     assert cyb.ind('Castelnaudary', DISTANCE) == 17
 
 
 def test_indice3():
-    download(url_dist, path_dist, replace=True)
+    url = 'https://raw.githubusercontent.com/ABernard27/PROJET-groupe-3/master/Document/Distance.csv'
+    path_target = "./Distance.csv"
+    download(url, path_target, replace = True)
+    #download(url_dist, path_dist, replace=True)
     DISTANCE=pd.read_csv("Distance.csv", sep=',')
     assert cyb.ind('Montgiscard', DISTANCE) == 22
 
