@@ -18,9 +18,7 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 
-def UI():
-    
-    
+
     class AppFindBestPathForPrice():
         # Ici on initialise la fenêtre de l'interface
         def __init__(self):
