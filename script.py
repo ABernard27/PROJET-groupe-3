@@ -35,6 +35,7 @@ Prix_map = pd.read_csv('Prix_map.csv', sep = ',')
 key='5b3ce3597851110001cf6248dfd20bf8793e4e978b4bb0ca383bfd55'
 cyb.carte(np.column_stack([data['x'],data['y']]),data[' Nom gare '],key,Prix_map)
 
+#%%
 #Affichage de la distribution des prix 
 cyb.distribution(Distance, Prix).Graph()
 
